@@ -7,11 +7,17 @@ import { MatTableModule, MatSortModule, MatCardModule, MatPaginatorModule} from 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
-
+import { AddActionComponent } from './add-action/add-action.component';
+import { EventListComponent } from './event-list/event-list.component';
+import { ChartsComponent } from './charts/charts.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    AddActionComponent,
+    EventListComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +28,8 @@ import {  HttpClientModule } from '@angular/common/http';
     MatSortModule,
     MatCardModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

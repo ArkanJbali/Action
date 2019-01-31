@@ -25,13 +25,8 @@
   text-shadow: 1px 1px 1px #ece1e1;
     font-size: 18px;
   }
-
-  mat-card{
-    /* width: 60%; */
-    border: 2px solid;
-    /* border-color:#C76BC0; */
-  }
   mat-paginator{
     float: left;
+    width: 45%
   }
 
