@@ -1,0 +1,37 @@
+/*
+ *@Author Arkan Jbali
+ *
+ */
+
+ div{
+  position: relative;
+  left: auto;
+  top: auto;
+  }
+  .Strong{
+    position: relative;
+    left: auto;
+    top: auto;
+    font-size: 20px;
+    }
+  .chart1{
+  clear : none;
+  float : center;
+  position : relative;
+  width : auto;
+  height : auto;
+  }
+
+
+  mat-cell {
+    color: white;
+    text-align: left;
+  }
+  mat-header-cell {
+    color: white;
+  text-shadow: 2px 2px 4px #ece1e1;
+    font-size: 16px;
+    font-style: italic;
+  }
+
+

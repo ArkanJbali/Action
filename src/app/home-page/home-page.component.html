@@ -1,0 +1,105 @@
+<div class="container">
+    <mat-card>
+        <div>
+            <strong style="font-size: 20px;">Actions Log</strong>
+        </div>
+        <mat-table #table [dataSource]="ActionLogData" matSort class='table text-white bg-dark'>
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
+          <mat-cell *matCellDef="let e">{{e.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="eventName">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header>eventName</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{e.eventName}}</mat-cell>
+          </ng-container>
+        <ng-container matColumnDef="severity">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header>severity</mat-header-cell>
+          <mat-cell *matCellDef="let e">
+              <span *ngIf= " e.severity === _Critical "><i class="material-icons" style="color: rgb(238, 53, 53);">
+                  error</i></span>
+              <span *ngIf= " e.severity === _Error "><i class="material-icons" style="color: rgb(15, 248, 170);">
+                  notification_important</i></span>
+              <span *ngIf= " e.severity === _Warning "><i class="material-icons" style="color: rgb(248, 238, 96);">
+                      warning</i></span>
+            {{e.severity}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef>description</mat-header-cell>
+          <mat-cell *matCellDef="let e">{{e.description}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Solution">
+            <mat-header-cell *matHeaderCellDef>Solution</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{e.fixAction}}</mat-cell>
+          </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+        <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+
+      </mat-table>
+      <mat-paginator #paginator [pageSize]="3" [pageSizeOptions]="[1, 2, 3]" showFirstLastButtons>
+      </mat-paginator>
+
+  </mat-card>
+</div>
+<br>
+<div class="row">
+    <!-- Actions By App -->
+<div class="col" align="left">
+
+    <table class='table text-white bg-dark'>
+      <caption>Action By App</caption>
+      <tr>
+        <th>App Name</th>
+        <th>Action Num</th>
+        <th>Def</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+</div>
+
+  <div class="col" align="right">
+    <!-- Actions By Severity
+    <div class="col" align="left">
+        <mat-card>
+            <div>
+                <strong style="font-size: 20px;">Actions By Severity</strong>
+            </div>
+        <div align="center">
+            <mat-table #table [dataSource]="bySevData" matSort class='table text-white bg-dark'>
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
+              <mat-cell *matCellDef="let e">{{e.id}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="eventName">
+                <mat-header-cell *matHeaderCellDef  mat-sort-header>eventName</mat-header-cell>
+                <mat-cell *matCellDef="let e">{{e.eventName}}</mat-cell>
+              </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+            <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+
+          </mat-table>
+          <mat-paginator #paginator [pageSize]="3" [pageSizeOptions]="[1, 2, 3]">
+          </mat-paginator>
+        </div>
+      </mat-card>
+    <!-- <table class='table text-white bg-dark'>
+      <caption>Action By Severity</caption>
+      <tr>
+        <th>App Name</th>
+        <th>Action Num</th>
+        <th>Def</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>-->
