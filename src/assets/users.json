@@ -1,0 +1,31 @@
+[
+    {
+    "seqID": "1",
+   "title": "DB connection",
+    "Severity": "Critical",
+    "Description": "some error",
+    "Solution": "sol"
+},
+    {
+    "seqID": "2",
+   "title": "Logical error",
+    "Severity": "Warning",
+    "Description": "some error",
+    "Solution": "sol"
+},
+  {
+    "seqID": "3",
+   "title": "Missing parameter",
+    "Severity": "Error",
+    "Description": "some error",
+    "Solution": "sol"
+},
+{
+  "seqID": "4",
+ "title": "Missing parameter2",
+  "Severity": "Error",
+  "Description": "some error",
+  "Solution": "sol"
+}
+
+]
