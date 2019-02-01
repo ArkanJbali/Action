@@ -1,0 +1,39 @@
+form {
+  font:100% verdana,arial,sans-serif;
+  margin: 0;
+  padding: 0;
+  min-width: 500px;
+  max-width: 600px;
+  width: 560px;
+}
+
+form fieldset {
+
+  border-color: rgb(250, 250, 250);
+  border-width: 1px;
+  border-style: solid;
+  padding: 10px;        /* padding in fieldset support spotty in IE */
+  margin: 0;
+}
+.ss{
+  border-color: rgb(250, 250, 250);
+  border-width: 1px;
+  border-style: solid;
+  padding: 10px;        /* padding in fieldset support spotty in IE */
+  margin: 0;
+  clear:left;
+}
+
+form fieldset legend {
+	font-size:1.1em;
+}
+
+form fieldset label:first-letter {
+  text-decoration:underline;
+}
+
+
+
+form br {
+	clear:left;
+}

@@ -1,0 +1,20 @@
+[
+  {
+  "seqID": "1",
+ "name": "BLM1"
+
+},
+  {
+    "seqID": "2",
+    "name": "Clm1"
+},
+{
+  "seqID": "3",
+ "name": "Klm"
+},
+{
+  "seqID": "4",
+  "name": "mlm"
+}
+
+]

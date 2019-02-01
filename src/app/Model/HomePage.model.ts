@@ -19,6 +19,6 @@ export interface ActionsByApp {
 }
 export interface ActionsBySeverity {
   Severity: string ;
-  ActionNum: string ;
+  SevNum: string ;
   Def: string ;
 }

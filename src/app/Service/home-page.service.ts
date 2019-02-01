@@ -13,8 +13,8 @@ export class HomePageService {
   //     return this.http.get<ActionLog[]>(this.serviceUrl);
   // }
   private _posturl = 'https://loggitor-be.herokuapp.com/getEventInsTable/1';
-  private _ByAppURL = '';
-  private _BySevURL = '';
+  private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp';
+  private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity';
    getPosts(): Observable<EventsInstance[]> {
      return this.http.get<EventsInstance[]>(this._posturl);
    }

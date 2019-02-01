@@ -9,8 +9,11 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 export class HomePageComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator2: MatPaginator;
+  @ViewChild(MatPaginator) paginator3: MatPaginator;
   displayedColumns = ['id', 'eventName', 'severity', 'description', 'Solution'];
-  displayedColumns2 = ['App Name', 'Action Num', 'Def'];
+  displayedColumns2 = ['AppName', 'ActionNum', 'Def'];
+  displayedColumns3 = ['Severity', 'SevNum', 'Def'];
   ActionLogData;
   byAppData;
   bySevData;
@@ -27,22 +30,22 @@ export class HomePageComponent implements OnInit {
       this.ActionLogData.sort = this.sort;
       this.ActionLogData.paginator = this.paginator;
     });
-    // this.homeService.getApp().subscribe(results2 => {
-    //   if (!results2) {
-    //     return;
-    //   }
-    //   this.byAppData = new MatTableDataSource(results2);
-    //   this.byAppData.sort = this.sort;
-    //   this.byAppData.paginator2 = this.paginator2;
-    // });
-    // this.homeService.getSev().subscribe(results3 => {
-    //   if (!results3) {
-    //     return;
-    //   }
-    //   this.bySevData = new MatTableDataSource(results3);
-    //   this.bySevData.sort = this.sort;
-    //   this.bySevData.paginator2 = this.paginator2;
-    // });
+    this.homeService.getApp().subscribe(results2 => {
+      if (!results2) {
+        return;
+      }
+      this.byAppData = new MatTableDataSource(results2);
+      this.byAppData.sort = this.sort;
+      this.byAppData.paginator2 = this.paginator2;
+    });
+    this.homeService.getSev().subscribe(results3 => {
+      if (!results3) {
+        return;
+      }
+      this.bySevData = new MatTableDataSource(results3);
+      this.bySevData.sort = this.sort;
+      this.bySevData.paginator3 = this.paginator3;
+    });
 
   }
 }

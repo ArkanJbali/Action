@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EventsService {
-  private _posturl = 'https://loggitor-be.herokuapp.com/getEventInsTable/1';
+  private _posturl = 'https://loggitor-be.herokuapp.com/events';
 
   constructor(private http: HttpClient) {
    }

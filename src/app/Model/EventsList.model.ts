@@ -1,10 +1,17 @@
 
 export interface EventsInstance {
   id: number;
-  eventName: string;
-  severity: string;
-  description: string;
-  fixAction: string;
+  app: {
+    name: string};
+// defectSeverity: string;
+  comperator: string;
+  percent: string;
+  eventSev: {
+    severity: string;
+  };
+  fixAction: {
+    actionName: string};
+  // solution: string;
 }
 
 // export interface Events {

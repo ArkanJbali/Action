@@ -1,16 +1,18 @@
 import { EventsService } from './../Service/events.service';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
-  styleUrls: ['./event-list.component.css']
+  styleUrls: ['./event-list.component.css'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class EventListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns = ['id', 'eventName', 'severity', 'description', 'fixAction'];
+  displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'solution'];
 public events;
 _Critical: String = 'critical';
 _Warning: String = 'Warning';
