@@ -16,11 +16,11 @@
     }
 
 
-  td.mat-cell {
+  mat-cell {
     color: white;
     text-align: left;
   }
-  th.mat-header-cell {
+  mat-header-cell {
     color: white;
   text-shadow: 1px 1px 1px #ece1e1;
     font-size: 18px;
@@ -34,5 +34,8 @@
   mat-paginator{
     float: left;
     color: white;
+  }
+  MatDialog{
+    background: black;
   }
 

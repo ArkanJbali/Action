@@ -1,0 +1,18 @@
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+option{
+  color: black;
+}
+/* mat-grid-tile {
+  background: lightblue;
+} */
+mat-toolbar{
+  background: #FFC04F;
+  background: -moz-linear-gradient(-45deg, #FFC04F 0%, #FF9921 0%, #C76BC0 100%);
+  background: -webkit-linear-gradient(-45deg, #FFC04F 0%, #FF9921 0%, #C76BC0 100%);
+  background: linear-gradient(135deg, #FFC04F 0%, #FF9921 0%, #C76BC0 100%);
+}
+mat-hint{
+  color: white;
+}

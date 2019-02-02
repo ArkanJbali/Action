@@ -7,10 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class EventsService {
   private _posturl = 'https://loggitor-be.herokuapp.com/events';
+  private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
 
   constructor(private http: HttpClient) {
    }
    getPosts(): Observable<EventsInstance[]> {
-     return this.http.get<EventsInstance[]>(this._posturl);
+     return this.http.get<EventsInstance[]>(this._posturl2);
    }
 }

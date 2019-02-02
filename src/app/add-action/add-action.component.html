@@ -1,10 +1,12 @@
+
+
 <div align="center"><form name="f">
-<fieldset>
-		<legend> Event Defention</legend>
-    <label style="margin:40px;">
+<fieldset align="left">
+		<legend>  Event Defention</legend>
+    <label style="margin:20px;">
         Application :
         </label>
-        <select id="application" name="application"   class="from-control" style="width:50%">
+        <select id="application" name="application"   class="from-control" style="width:50%;margin:40px;">
             <option *ngFor="let app of apps" [ngValue]="app.appName">{{app.appName}}  </option>
           </select>
           <label style="margin:20px;">
@@ -44,7 +46,7 @@
 
               </fieldset>
               <br>
-  <fieldset>
+  <fieldset align="left">
       <legend>  Action Defntion</legend>
       <label style="margin:10px;">
           Action Severity :
@@ -60,140 +62,17 @@
             </label>
 
         <select id="actionselection" name="actionselection"  class="from-control" style="width:20%">
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=3>4</option>
+            <option *ngFor="let act of actions" [ngValue]="actions.name"> {{act.name}}  </option>
           </select>
       </fieldset>
       <fieldset align="center">
-          <button type="button"   style="margin:10px;" class="btn btn-light" >Save</button>
-          <input type="reset" value="Cancel" class="btn btn-light">
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" >Save</button>
+          <button mat-raised-button color="warn">Clear</button>
+        </div>
       </fieldset>
 </form>
 </div>
-  <table style="width:60%">
-      <tr>
-          <td colspan="4" align="left" style="height: 90px; font-size: 20px;"> Event Defention
-        </td>
-       </tr>
-     <tr>
-        <td class="form-group">
-        <label style="margin:10px;">
-          Application :
-          </label>
-        </td>
-        <td>
-          <select id="application" name="application"   class="from-control" style="width:50%">
-            <option *ngFor="let app of apps" [ngValue]="app.appName">{{app.appName}}  </option>
-          </select>
-        </td>
-        <td></td>
-        <td></td>
-     </tr>
-     <tr>
-        <td class="form-group">
-            <label style="margin:10px;">
-                Defect Severity :
-                </label>
-        </td>
-        <td>
-            <select id="defectseverity" name="defectseverity"  class="from-group" style="width:50%">
-                <option value=1>IconC</option>
-                <option value=2>IconE</option>
-                <option value=3>IconW</option>
-              </select>
-        </td>
-        <td></td>
-        <td></td>
-     </tr>
-     <tr>
-        <td class="form-group">
-            <label style="margin:10px;">
-                Comperator :
-            </label>
-
-        </td>
-        <td colspan="3">
-            <label class="radio-inline">
-                <label style="margin:10px;">
-               <input type="radio" name="gender" value="Greate Than" >
-                  Greater Than:
-              </label>
-             </label>
-            <label class="radio-inline">
-                <label style="margin:10px;">
-              <input type="radio" name="gender" value="Lower than" >
-                  Lower Than
-              </label>
-            </label>
-            <label class="radio-inline">
-                <label style="margin:10px;">
-              <input type="radio" name="gender" value="Equal" >
-                 Equal
-              </label>
-               </label>
-        </td>
-     </tr>
-     <tr>
-        <td class="form-group">
-                <label style="margin:10px;">
-                  Number of occurance (%) : </label>
-
-        </td>
-        <td>
-
-            <input type="number" min="0" max="100" value="1" step="1" style="width:20%; font-size: 15px;">
-        </td>
-        <td></td>
-        <td></td>
-     </tr>
-     <tr>
-        <td colspan="4" align="left" style="height: 90px; font-size: 20px;"> Action Defntion
-      </td>
-     </tr>
-     <tr>
-        <td class="form-group">
-            <label style="margin:10px;">
-                Action Severity :
-                </label>
-        </td>
-        <td>
-            <select id="actionseverity" name="actionseverity"  class="from-group" style="width:50%">
-                <option value=1>Critical</option>
-                <option value=2>Error</option>
-                <option value=3>Warning</option>
-
-              </select>
-        </td>
-        <td></td>
-        <td></td>
-     </tr>
-     <tr>
-        <td class="form-group">
-            <label style="margin:10px;">
-                Action Selection :
-                </label>
-        </td>
-        <td>
-            <select id="actionselection" name="actionselection"  class="from-control" style="width:20%">
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=3>4</option>
-              </select>
-        </td>
-        <td></td>
-        <td></td>
-     </tr>
-     <tr>
-        <td colspan="4" align="center" style="height: 200px;"> <button type="button"   style="margin:10px;" class="btn btn-light" >Save</button>
-        <input type="reset" value="Cancel" class="btn btn-light">
-      </td>
-     </tr>
-   </table>
-
-
 
 
 

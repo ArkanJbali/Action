@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddActionService } from '../Service/add-action.service';
-import { SelectorListContext, CssSelector } from '@angular/compiler';
+
+
 @Component({
   selector: 'app-add-action',
   templateUrl: './add-action.component.html',
@@ -8,8 +9,8 @@ import { SelectorListContext, CssSelector } from '@angular/compiler';
 })
 export class AddActionComponent implements OnInit {
   public apps;
-
-  constructor(private addactionService:  AddActionService) { }
+  public actions;
+  constructor(public addactionService:  AddActionService) { }
   ngOnInit() {
    this.addactionService.getApp().subscribe(data => {
     if (!data) {
@@ -18,6 +19,11 @@ export class AddActionComponent implements OnInit {
     this.apps = data;
 
   });
-
+  this.addactionService.getAction().subscribe(data => {
+    if (!data) {
+      return;
+    }
+    this.actions = data;
+  });
 }
 }

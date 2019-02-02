@@ -1,0 +1,101 @@
+<div class="bg-dark text-white" style="width:100%; height:100%;">
+<div class="container" style="width:100%;padding:0;
+margin:0;">
+    <mat-toolbar>
+      <span class="fill-remaining-space"></span>
+      <span>Add New Action</span>
+      <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+</div>
+
+<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white">
+    <mat-grid-list cols="2" rowHeight="350px">
+      <mat-grid-tile>
+        <div class="controlers-container">
+            <input type="hidden" formControlName="$key">
+            <div class="form-group">
+              <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Event Defntion</label><br>
+            <mat-form-field>
+              <select matNativeControl required [formControl]="selectFormControl" formControlName="app">
+              <option label="--select something --"></option>
+              <option *ngFor="let app of application" [ngValue]="app.appName">{{app.appName}}  </option>
+              </select>
+              <mat-error *ngIf="selectFormControl.hasError('required')">
+              This field is required
+              </mat-error>
+              <mat-hint>You can pick up an application</mat-hint>
+              <mat-error *ngIf="appsControl.hasError('required')">Please choose an app</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <select matNativeControl required [formControl]="selectFormControl" formControlName="defSev">
+              <option label="--select something --"></option>
+              <option label="Critical"></option>
+              <option label="Warning"></option>
+              <option label="Error"></option>
+              </select>
+              <mat-error *ngIf="selectFormControl.hasError('required')">
+              This field is required
+              </mat-error>
+              <mat-hint>You can pick up an defect severity</mat-hint>
+              <mat-error *ngIf="appsControl.hasError('required')">Please choose the defect severity</mat-error>
+            </mat-form-field>
+</div>
+            <!-- <mat-form-field>
+              <mat-radio-group matInput formControlName="Comprat">
+                <mat-radio-button value="1">Lower Than</mat-radio-button>
+                <mat-radio-button value="2">Equal</mat-radio-button>
+                <mat-radio-button value="3">Greater Than</mat-radio-button>
+              </mat-radio-group>
+            </mat-form-field> -->
+            <div class="form-group">
+            <mat-form-field>
+                <label>
+                    Number of occurance(%): </label>
+              <input matInput type="number" min="0" max="100" value="1" step="1" style="width:40%; font-size: 15px;" formControlName="percent">
+            </mat-form-field>
+            </div>
+         </div>
+      </mat-grid-tile>
+<mat-grid-tile>
+    <div class="controlers-container">
+    <div class="form-group">
+        <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Action Defntion</label><br>
+        <mat-form-field>
+            <select matNativeControl required [formControl]="selectFormControl" formControlName="actionSev">
+            <option label="--select something --"></option>
+            <option label="Critical"></option>
+            <option label="Warning"></option>
+            <option label="Error"></option>
+            </select>
+            <mat-error *ngIf="selectFormControl.hasError('required')">
+            This field is required
+            </mat-error>
+            <mat-hint>You can pick up an action severity</mat-hint>
+            <mat-error *ngIf="appsControl.hasError('required')">Please choose the action severity</mat-error>
+          </mat-form-field>
+          </div>
+          <div class="form-group">
+          <mat-form-field>
+              <select matNativeControl required [formControl]="selectFormControl" formControlName="actSelect">
+              <option label="--select something --"></option>
+              <option *ngFor="let act of actions" [ngValue]="actions.name"> {{act.name}}  </option>
+              </select>
+              <mat-error *ngIf="selectFormControl.hasError('required')">
+              This field is required
+              </mat-error>
+              <mat-hint>You can pick up an action</mat-hint>
+              <mat-error *ngIf="appsControl.hasError('required')">Please choose the action</mat-error>
+            </mat-form-field>
+            </div>
+
+    <div class="button-row">
+        <button mat-raised-button color="primary" type="submit">Save</button>
+        <button mat-raised-button color="warn">Clear</button>
+    </div>
+    </div>
+</mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>
