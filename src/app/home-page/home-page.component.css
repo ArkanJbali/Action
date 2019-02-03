@@ -2,7 +2,14 @@
  *@Author Arkan Jbali
  *
  */
-
+ .hide{
+  display: none;
+}
+ mat-footer-row mat-footer-cell{
+  justify-content: center;
+  font-style: italic;
+  color: white;
+}
  div{
   position: relative;
   left: auto;

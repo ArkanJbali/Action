@@ -50,4 +50,20 @@ addAction(newAc): Observable<NewAction> {
     actSelect: ''
    });
  }
+ populateForm(action) {
+   this.form.setValue({
+     $key: action.SeqID,
+    title: action.title,
+    app: action.AppName,
+    defSev: action.DefSev,
+    Comprat: action.Comperator,
+    percent: action.NumberOfOccurance,
+    desc: action.Description,
+    actionSev: action.ActionSeverity,
+    actSelect: action.ActionSelection
+   });
+ }
+ deleteAction($key: string) {
+ // this.action.remove($key);
+}
 }

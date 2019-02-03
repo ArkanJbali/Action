@@ -66,14 +66,26 @@
           <ng-container matColumnDef="edit">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let row">
-              <button mat-icon-button ><mat-icon>launch</mat-icon></button>
-              <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+              <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+              <button mat-icon-button color="warn" (click)="onDelete(row)"><mat-icon>delete_outline</mat-icon></button>
             </mat-cell>
           </ng-container>
-
+          <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+              Loading Data...
+            </mat-footer-cell>
+          </ng-container>
+          <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+              No Data.
+            </mat-footer-cell>
+          </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
         <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
-
+          <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':events!=null}">
+          </mat-footer-row>
+          <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(events!=null && events.data.length==0)}">
+          </mat-footer-row>
       </mat-table>
       <mat-paginator #paginator class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]">
       </mat-paginator>
