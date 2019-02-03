@@ -30,4 +30,8 @@ export class AddActionsComponent implements OnInit {
     this.actions = data;
   });
 }
+onClear() {
+  this.addService.form.reset();
+  this.addService.initializeFormGroup();
+}
 }

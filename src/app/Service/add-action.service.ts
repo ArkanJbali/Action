@@ -2,7 +2,7 @@ import { Apps, NewAction , Actions} from './../Model/AddAction.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,12 @@ export class AddActionService {
   constructor(private http: HttpClient) { }
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
-    app: new FormControl(''),
+    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    app: new FormControl('', Validators.required),
     defSev: new FormControl(''),
     Comprat: new FormControl(''),
     percent: new FormControl(''),
+    desc: new FormControl(''),
     actionSev: new FormControl(''),
     actSelect: new FormControl('')
   });
@@ -35,5 +37,17 @@ getApp(): Observable<Apps[]> {
 addAction(newAc): Observable<NewAction> {
   return this.http.post<NewAction>(this.serviceUrl, newAc, this.httpOptions);
  }
-
+ initializeFormGroup() {
+   this.form.setValue({
+    $key: null,
+    title: '',
+    app: '',
+    defSev: '',
+    Comprat: '',
+    percent: '',
+    desc: '',
+    actionSev: '',
+    actSelect: ''
+   });
+ }
 }

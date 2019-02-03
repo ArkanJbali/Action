@@ -1,9 +1,18 @@
+form {
+height: 100%;
+  width: 100%;
+}
+.button-row button{
+  margin: 5px;
+}
+
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
 }
 option{
   color: black;
 }
+
 /* mat-grid-tile {
   background: lightblue;
 } */
@@ -13,6 +22,13 @@ mat-toolbar{
   background: -webkit-linear-gradient(-45deg, #FFC04F 0%, #FF9921 0%, #C76BC0 100%);
   background: linear-gradient(135deg, #FFC04F 0%, #FF9921 0%, #C76BC0 100%);
 }
-mat-hint{
+mat-form-field.mat-hint{
   color: white;
 }
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+mat-radio-group {
+  display: inline;
+}
+

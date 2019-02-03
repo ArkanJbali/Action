@@ -38,8 +38,8 @@ _Error: String = 'error';
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '65%';
-    dialogConfig.height = '85%';
+    dialogConfig.width = '80%';
+    dialogConfig.height = '100%';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
 }
