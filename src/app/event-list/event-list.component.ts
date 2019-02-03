@@ -1,11 +1,13 @@
 import { AddActionService } from 'src/app/Service/add-action.service';
 import { EventsService } from './../Service/events.service';
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Input} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
 import { AddActionsComponent } from './add-actions/add-actions.component';
 import { NewAction, EventsInstance } from '../Model/EventsList.model';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -18,12 +20,16 @@ export class EventListComponent implements OnInit {
   displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'solution', 'description', 'edit'];
 public events;
 eventsAct: EventsInstance[];
+@Input() eventss: EventsInstance;
 _Critical: String = 'critical';
 _Warning: String = 'warning';
 _Error: String = 'error';
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
-    private newAction: AddActionService) { }
+    private newAction: AddActionService,
+    private route: ActivatedRoute,
+    private location: Location
+    ) { }
   ngOnInit() {
     this.getEvents2();
    // this.eventService.getPosts().subscribe(data => this.events = data);
@@ -66,4 +72,12 @@ _Error: String = 'error';
   this.eventService.deleteAction(action).subscribe();
      }
    }
+   goBack(): void {
+    this.location.back();
+  }
+
+ save(): void {
+    this.eventService.updateAction(this.eventss)
+      .subscribe(() => this.goBack());
+  }
 }

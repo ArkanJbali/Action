@@ -30,7 +30,7 @@
             <mat-form-field>
               <select matNativeControl   formControlName="defSev">
               <option label="--select defect Severity --"></option>
-              <option label="Critical"></option>
+              <option label="Critical" ></option>
               <option label="Warning"></option>
               <option label="Error"></option>
               </select>
@@ -42,9 +42,9 @@
 <label style="margin:5px;" class="font-weight-bold"> Comperator: </label>
               <input matInput placeholder="Input" style="display: none" >
               <mat-radio-group  formControlName="Comprat">
-                <mat-radio-button value="1">Lower Than</mat-radio-button>
-                <mat-radio-button value="2">Equal</mat-radio-button>
-                <mat-radio-button value="3">Greater Than</mat-radio-button>
+                <mat-radio-button value="smaller">Lower Than</mat-radio-button>
+                <mat-radio-button value="equal">Equal</mat-radio-button>
+                <mat-radio-button value="bigger">Greater Than</mat-radio-button>
                 <mat-error *ngIf="addService.form.controls['Comprat'].errors?.required">one is required.</mat-error>
               </mat-radio-group>
           </div>
@@ -52,7 +52,8 @@
             <mat-form-field>
                 <label>
                     Number of occurance(%): </label>
-              <input matInput type="number" min="0" max="100" value="1" step="1" style="width:50%; font-size: 15px;" formControlName="percent">
+              <input matInput type="number" min="0" max="100" value="application.percent" step="1"
+               style="width:50%; font-size: 15px;" formControlName="percent">
               <mat-hint>You can pick a number for percentage</mat-hint>
             </mat-form-field>
             </div>
@@ -63,7 +64,7 @@
     <div class="form-group">
         <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Action Defntion</label><br>
         <mat-form-field>
-            <select matNativeControl   formControlName="actionSev">
+            <select matNativeControl formControlName="actionSev">
             <option label="--select action severity --"></option>
             <option label="Critical"></option>
             <option label="Warning"></option>

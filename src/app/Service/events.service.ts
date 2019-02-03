@@ -20,14 +20,22 @@ export class EventsService {
      return this.http.get<EventsInstance[]>(this._posturl2);
    }
 
-     /** DELETE: delete the hero from the server */
-  deleteAction (action: EventsInstance | number): Observable<NewAction> {
+     /** DELETE: delete the action from the server */
+  deleteAction (action: EventsInstance | number): Observable<EventsInstance> {
     const id = typeof action === 'number' ? action : action.id;
     const url = `${this._posturl2}/${id}`;
 
-    return this.http.delete<NewAction>(url, httpOptions).pipe(
+    return this.http.delete<EventsInstance>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted action id=${id}`)),
-      catchError(this.handleError<NewAction>('deleteAction'))
+      catchError(this.handleError<EventsInstance>('deleteAction'))
+    );
+  }
+  /** PUT: update the action on the server */
+  updateAction (action: EventsInstance): Observable<any> {
+    const url = `${this._posturl2}/${action.id}`;
+    return this.http.put(url, action, httpOptions).pipe(
+      tap(_ => this.log(`updated action id=${action.id}`)),
+      catchError(this.handleError<any>('updateAction'))
     );
   }
   /**
