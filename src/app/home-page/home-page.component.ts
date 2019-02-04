@@ -7,6 +7,8 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
+// this is ramiz
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatPaginator) paginator2: MatPaginator;
