@@ -1,3 +1,4 @@
+import { EventsInstance } from './../../Model/EventsList.model';
 import { AddActionComponent } from './../../add-action/add-action.component';
 import { MatDialogRef } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +14,9 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 export class AddActionsComponent implements OnInit {
   public application;
   public actions;
+  public ev;
+  // tslint:disable-next-line:max-line-length
+  public s: [  ] = [];
   app = new FormControl('');
   appsControl = new FormControl('', [Validators.required]);
   selectFormControl = new FormControl('', Validators.required);
@@ -47,9 +51,24 @@ onSumbit() {
     this.onClose();
   }
 }
+
 onClose() {
   this.addService.form.reset();
     this.addService.initializeFormGroup();
     this.dialogRef.close();
+}
+add2() {
+  this.addService.addAct(this.s)
+    .subscribe(hero => this.ev.push(hero));
+}
+add(action: EventsInstance): void {
+  if (!action) { return; }
+  this.addService.addAct({ action } )
+    .subscribe(hero => {
+      this.ev.push(hero);
+    });
+}
+onSubmit(form: any): void {
+  console.log('you submitted value:', form);
 }
 }

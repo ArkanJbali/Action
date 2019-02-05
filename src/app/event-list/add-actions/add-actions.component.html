@@ -5,7 +5,7 @@
     </mat-toolbar>
 </div>
 
-<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white">
+<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white" #heroName="ngForm" (ngSubmit)="onSubmit(heroName.value)">
     <mat-grid-list cols="2" rowHeight="1:1">
       <mat-grid-tile>
         <div class="controlers-container">
@@ -28,7 +28,7 @@
           </div>
           <div class="form-group">
             <mat-form-field>
-              <select matNativeControl   formControlName="defSev">
+              <select matNativeControl  formControlName="defSev">
               <option label="--select defect Severity --"></option>
               <option label="Critical" ></option>
               <option label="Warning"></option>
@@ -42,7 +42,7 @@
 <label style="margin:5px;" class="font-weight-bold"> Comperator: </label>
               <input matInput placeholder="Input" style="display: none" >
               <mat-radio-group  formControlName="Comprat">
-                <mat-radio-button value="smaller">Lower Than</mat-radio-button>
+                <mat-radio-button value="1">Lower Than</mat-radio-button>
                 <mat-radio-button value="equal">Equal</mat-radio-button>
                 <mat-radio-button value="bigger">Greater Than</mat-radio-button>
                 <mat-error *ngIf="addService.form.controls['Comprat'].errors?.required">one is required.</mat-error>
@@ -90,7 +90,7 @@
             </div>
 
     <div class="button-row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="addService.form.invalid">Save</button>
+        <button mat-raised-button color="primary" type="submit" (click)="add()" [disabled]="addService.form.invalid">Save</button>
         <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
     </div>
     </div>

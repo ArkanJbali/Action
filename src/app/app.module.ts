@@ -18,6 +18,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddActionsComponent } from './event-list/add-actions/add-actions.component';
+import { AlertsComponent } from './alerts/alerts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { AddActionsComponent } from './event-list/add-actions/add-actions.compon
     EventListComponent,
     ChartsComponent,
     AddActionsComponent,
+    AlertsComponent,
     // NgbdModalConfig
   ],
   imports: [
@@ -53,6 +55,6 @@ import { AddActionsComponent } from './event-list/add-actions/add-actions.compon
   ],
   providers: [AddActionService, AddActionsComponent],
   bootstrap: [AppComponent],
-  entryComponents: [AddActionsComponent]
+  entryComponents: [AddActionsComponent, AlertsComponent]
 })
 export class AppModule { }

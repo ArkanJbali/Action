@@ -30,6 +30,12 @@ export class EventsService {
       catchError(this.handleError<EventsInstance>('deleteAction'))
     );
   }
+  delete(id: number) {
+    return this.http.delete('https://loggitor-be.herokuapp.com/api/definedEvents/' + id);
+}
+getAll() {
+  return this.http.get<EventsInstance[]>(this._posturl2);
+}
   /** PUT: update the action on the server */
   updateAction (action: EventsInstance): Observable<any> {
     const url = `${this._posturl2}/${action.id}`;

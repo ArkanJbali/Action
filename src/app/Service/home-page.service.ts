@@ -8,11 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class HomePageService {
   constructor(private http: HttpClient) { }
-  //   private serviceUrl = './assets/users.json';
-  //   getActionLog(): Observable< ActionLog[]> {
-  //     return this.http.get<ActionLog[]>(this.serviceUrl);
-  // }
-  private _posturl = 'https://loggitor-be.herokuapp.com/getEventInsTable/1';
+  private _posturl = 'https://loggitor-be.herokuapp.com/getAllEventInsTable/2';
   private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp';
   private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity';
    getPosts(): Observable<EventsInstance[]> {

@@ -1,3 +1,4 @@
+import { AlertService } from './../Service/alert.service';
 import { AddActionService } from 'src/app/Service/add-action.service';
 import { EventsService } from './../Service/events.service';
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
@@ -8,6 +9,7 @@ import { AddActionsComponent } from './add-actions/add-actions.component';
 import { NewAction, EventsInstance } from '../Model/EventsList.model';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -21,14 +23,15 @@ export class EventListComponent implements OnInit {
 public events;
 eventsAct: EventsInstance[];
 @Input() eventss: EventsInstance;
-_Critical: String = 'critical';
-_Warning: String = 'warning';
-_Error: String = 'error';
+_Critical: String = 'Critical';
+_Warning: String = 'Warning';
+_Error: String = 'Error';
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
     private newAction: AddActionService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private dialogService: AlertService
     ) { }
   ngOnInit() {
     this.getEvents2();
@@ -75,6 +78,23 @@ _Error: String = 'error';
    goBack(): void {
     this.location.back();
   }
+
+  // Neww Change -----------------------------------------------------
+  deleteUser(id: number) {
+    // this.dialogService.openConfirmDialog();
+    this.dialogService.openConfirmDialog('Are your sure to delete this record?');
+    // .afterClosed().subscribe(res => {
+    //   if (res) {
+    //     this.eventService.deleteAction(id);
+    //     // this.notificationService.warn('! Deleted successfully');
+    //   }
+    // });
+  }
+private loadAllUsers() {
+  this.eventService.getPosts().pipe(first()).subscribe(users => {
+      this.eventsAct = users;
+  });
+}
 
  save(): void {
     this.eventService.updateAction(this.eventss)

@@ -9,7 +9,6 @@ export interface EventsInstance {
   eventSeverity: string;
   actionName: string;
   description: string;
-  solution: string;
  }
  export interface NewAction {
   SeqID: number;

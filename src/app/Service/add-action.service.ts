@@ -1,15 +1,16 @@
+import { EventsInstance } from './../Model/EventsList.model';
 import { Apps, NewAction , Actions} from './../Model/AddAction.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { catchError, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 
 export class AddActionService {
-  httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
+ httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
   constructor(private http: HttpClient) { }
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
@@ -25,6 +26,8 @@ export class AddActionService {
 private _posturl = 'https://loggitor-be.herokuapp.com/apps';
 private _actions = 'https://loggitor-be.herokuapp.com/actionsName';
 private serviceUrl = './assets/users.json';
+public s = [ {id: 9, title: 'ss', appName: 'BLM', defSeverity: 'Critical', comperator: 'bigger',
+  percent: 50, eventSeverity: 'Critical', actionName: 'SMS', description: 'idk1'} ];
 getApp(): Observable<Apps[]> {
    return this.http.get<Apps[]>(this._posturl);
  }
@@ -34,9 +37,18 @@ getApp(): Observable<Apps[]> {
 //  addAction (hero: Hero): Observable<NewAction[]> {
 //   return this.http.post<NewAction[]>(this._posturl2, hero, httpOptions);
 // }
-addAction(newAc): Observable<NewAction> {
-  return this.http.post<NewAction>(this.serviceUrl, newAc, this.httpOptions);
- }
+addActions(action): Observable<EventsInstance> {
+  return this.http.post<EventsInstance>(this.serviceUrl, action, this.httpOptions).pipe(
+    tap((s: EventsInstance) => console.log(`added action w/ id=${action.id}`)),
+    catchError(this.handleError<EventsInstance>('addActions'))
+  );
+}
+ addAct (newAc): Observable<EventsInstance> {
+  return this.http.post<EventsInstance>(this.serviceUrl, newAc, this.httpOptions)
+    .pipe(
+      catchError(this.handleError('addAct', newAc))
+    );
+}
  initializeFormGroup() {
    this.form.setValue({
     $key: null,
@@ -65,5 +77,16 @@ addAction(newAc): Observable<NewAction> {
  }
  deleteAction($key: string) {
  // this.action.remove($key);
+}
+
+private handleError<T> (operation = 'operation', result?: T) {
+  return (error: any): Observable<T> => {
+
+    // TODO: send the error to remote logging infrastructure
+    console.error(error); // log to console instead
+
+    // Let the app keep running by returning an empty result.
+    return of(result as T);
+  };
 }
 }
