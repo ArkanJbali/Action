@@ -11,36 +11,31 @@ const httpOptions: { headers: HttpHeaders } = {
 })
 export class EventsService {
   [x: string]: any;
-  private _posturl = 'https://loggitor-be.herokuapp.com/events';
   private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
-  private _DeleteURL = 'https://actiondb.herokuapp.com/deleteEvent';
-  private checkkkk = 'https://actiondb.herokuapp.com/viewEvents/1/100';
+  private _DeleteURL = 'https://loggitor-be.herokuapp.com/deleteEvent';
+  private checkkkk = 'https://loggitor-be.herokuapp.com//viewEvents/1/100';
   constructor(private http: HttpClient) {
    }
-   getPosts(): Observable<EventsInstance[]> {
-     return this.http.get<EventsInstance[]>(this.checkkkk);
+   getPosts(): Observable<NewAction[]> {
+     return this.http.get<NewAction[]>(this.checkkkk);
    }
 
      /** DELETE: delete the action from the server */
-  deleteAction (action: EventsInstance | number): Observable<EventsInstance> {
+  deleteAction (action: NewAction | number): Observable<NewAction> {
     const id = typeof action === 'number' ? action : action.id;
     const url = `${this._DeleteURL}/${id}`;
     console.log('done' + action);
-    return this.http.delete<EventsInstance>(url, httpOptions);
+    return this.http.delete<NewAction>(url, httpOptions);
     // .pipe(
     //   tap(_ => this.log(`deleted action id=${id}`)),
     //   catchError(this.handleError<EventsInstance>('deleteAction'))
     // );
   }
-  delete(id: number) {
-    // console.log('https://actiondb.herokuapp.com/deleteEvent/' + id);
-    return this.http.delete('https://actiondb.herokuapp.com/deleteEvent/' + id);
-}
 getAll() {
-  return this.http.get<EventsInstance[]>(this._posturl2);
+  return this.http.get<NewAction[]>(this._posturl2);
 }
   /** PUT: update the action on the server */
-  updateAction (action: EventsInstance): Observable<any> {
+  updateAction (action: NewAction): Observable<any> {
     const url = `${this._posturl2}/${action.id}`;
     return this.http.put(url, action, httpOptions).pipe(
       tap(_ => this.log(`updated action id=${action.id}`)),

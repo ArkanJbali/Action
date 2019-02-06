@@ -21,8 +21,8 @@ export class EventListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'description', 'edit'];
 public events;
-eventsAct: EventsInstance[];
-@Input() eventss: EventsInstance;
+eventsAct: NewAction[];
+@Input() eventss: NewAction;
 _Critical: String = 'Critical';
 _Warning: String = 'Warning';
 _Error: String = 'Error';
@@ -34,7 +34,6 @@ _Error: String = 'Error';
     private dialogService: AlertService
     ) { }
   ngOnInit() {
-    this.getEvents2();
    // this.eventService.getPosts().subscribe(data => this.events = data);
    this.eventService.getPosts().subscribe(data => {
     if (!data) {
@@ -45,11 +44,6 @@ _Error: String = 'Error';
     this.events.sort = this.sort;
     this.events.paginator = this.paginator;
   });
-  }
-  getEvents2(): void {
-    this.eventService.getPosts()
-    .subscribe(ev => this.eventsAct = ev);
-    console.log('getEvents() called');
   }
   OnAdd() {
     this.newAction.initializeFormGroup();
@@ -70,14 +64,13 @@ _Error: String = 'Error';
     dialogConfig.height = '100%';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
-   onDelete(action: EventsInstance): void {
+   onDelete(action: NewAction): void {
      this.dialogService.openConfirmDialog('Are your sure to delete this record?').afterClosed().subscribe(
        res => {
       if ( res === true) {
         this.eventsAct = this.eventsAct.filter(h => h !== action);
         this.eventService.deleteAction(action).subscribe();
-        this.route.navigate(['/eventlist']);
-        this.getEvents2();
+        this.refresh();
         console.log('deleted\n' + action);
       } else {
         console.log('not deleted');
@@ -87,7 +80,9 @@ _Error: String = 'Error';
    goBack(): void {
     this.location.back();
   }
-
+  refresh(): void {
+    window.location.reload();
+}
  save(): void {
     this.eventService.updateAction(this.eventss)
       .subscribe(() => this.goBack());
