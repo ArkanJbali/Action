@@ -5,7 +5,7 @@
     </mat-toolbar>
 </div>
 
-<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white" #heroName="ngForm" (ngSubmit)="onSubmit(heroName.value)">
+<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white"  method="post">
     <mat-grid-list cols="2" rowHeight="1:1">
       <mat-grid-tile>
         <div class="controlers-container">
@@ -90,9 +90,11 @@
             </div>
 
     <div class="button-row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="addService.form.invalid">Save</button>
+        <button mat-raised-button color="primary"
+        (click)="onSumbit(addService.form.value);" type="submit" [disabled]="addService.form.invalid">Save</button>
         <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
-    </div>
+        <button mat-raised-button  color="warn"  mat-button mat-dialog-close  type="button">Cancel</button>
+      </div>
     </div>
 </mat-grid-tile>
     </mat-grid-list>

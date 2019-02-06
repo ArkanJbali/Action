@@ -1,6 +1,6 @@
 import { EventsInstance, NewAction } from './../Model/EventsList.model';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 const httpOptions: { headers: HttpHeaders } = {
@@ -13,25 +13,28 @@ export class EventsService {
   [x: string]: any;
   private _posturl = 'https://loggitor-be.herokuapp.com/events';
   private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
-
+  private _DeleteURL = 'https://actiondb.herokuapp.com/deleteEvent';
+  private checkkkk = 'https://actiondb.herokuapp.com/viewEvents/1/100';
   constructor(private http: HttpClient) {
    }
    getPosts(): Observable<EventsInstance[]> {
-     return this.http.get<EventsInstance[]>(this._posturl2);
+     return this.http.get<EventsInstance[]>(this.checkkkk);
    }
 
      /** DELETE: delete the action from the server */
   deleteAction (action: EventsInstance | number): Observable<EventsInstance> {
     const id = typeof action === 'number' ? action : action.id;
-    const url = `${this._posturl2}/${id}`;
-
-    return this.http.delete<EventsInstance>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted action id=${id}`)),
-      catchError(this.handleError<EventsInstance>('deleteAction'))
-    );
+    const url = `${this._DeleteURL}/${id}`;
+    console.log('done' + action);
+    return this.http.delete<EventsInstance>(url, httpOptions);
+    // .pipe(
+    //   tap(_ => this.log(`deleted action id=${id}`)),
+    //   catchError(this.handleError<EventsInstance>('deleteAction'))
+    // );
   }
   delete(id: number) {
-    return this.http.delete('https://loggitor-be.herokuapp.com/api/definedEvents/' + id);
+    // console.log('https://actiondb.herokuapp.com/deleteEvent/' + id);
+    return this.http.delete('https://actiondb.herokuapp.com/deleteEvent/' + id);
 }
 getAll() {
   return this.http.get<EventsInstance[]>(this._posturl2);

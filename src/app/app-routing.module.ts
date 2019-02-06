@@ -4,7 +4,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [{ path: 'eventlist', component: EventListComponent },
+const routes: Routes = [
+{ path: '', redirectTo: '/home', pathMatch: 'full' },
+{ path: 'eventlist', component: EventListComponent },
 { path: 'addAction', component: AddActionComponent },
 { path: 'home', component: HomePageComponent }];
 @NgModule({

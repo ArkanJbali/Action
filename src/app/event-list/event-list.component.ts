@@ -7,7 +7,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
 import { AddActionsComponent } from './add-actions/add-actions.component';
 import { NewAction, EventsInstance } from '../Model/EventsList.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
 @Component({
@@ -19,7 +19,7 @@ import { first } from 'rxjs/operators';
 export class EventListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'solution', 'description', 'edit'];
+  displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'description', 'edit'];
 public events;
 eventsAct: EventsInstance[];
 @Input() eventss: EventsInstance;
@@ -29,7 +29,7 @@ _Error: String = 'Error';
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
     private newAction: AddActionService,
-    private route: ActivatedRoute,
+    private route: Router,
     private location: Location,
     private dialogService: AlertService
     ) { }
@@ -49,6 +49,7 @@ _Error: String = 'Error';
   getEvents2(): void {
     this.eventService.getPosts()
     .subscribe(ev => this.eventsAct = ev);
+    console.log('getEvents() called');
   }
   OnAdd() {
     this.newAction.initializeFormGroup();
@@ -60,6 +61,7 @@ _Error: String = 'Error';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
    onEdit(row) {
+    console.log(row);
       this.newAction.populateForm(row);
       const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -69,32 +71,22 @@ _Error: String = 'Error';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
    onDelete(action: EventsInstance): void {
-     if (confirm('Are You Sure to delete this record?')) {
-// this.newAction.deleteAction(action);
-      this.eventsAct = this.eventsAct.filter(h => h !== action);
-  this.eventService.deleteAction(action).subscribe();
-     }
+     this.dialogService.openConfirmDialog('Are your sure to delete this record?').afterClosed().subscribe(
+       res => {
+      if ( res === true) {
+        this.eventsAct = this.eventsAct.filter(h => h !== action);
+        this.eventService.deleteAction(action).subscribe();
+        this.route.navigate(['/eventlist']);
+        this.getEvents2();
+        console.log('deleted\n' + action);
+      } else {
+        console.log('not deleted');
+      }}
+     );
    }
    goBack(): void {
     this.location.back();
   }
-
-  // Neww Change -----------------------------------------------------
-  deleteUser(id: number) {
-    // this.dialogService.openConfirmDialog();
-    this.dialogService.openConfirmDialog('Are your sure to delete this record?');
-    // .afterClosed().subscribe(res => {
-    //   if (res) {
-    //     this.eventService.deleteAction(id);
-    //     // this.notificationService.warn('! Deleted successfully');
-    //   }
-    // });
-  }
-private loadAllUsers() {
-  this.eventService.getPosts().pipe(first()).subscribe(users => {
-      this.eventsAct = users;
-  });
-}
 
  save(): void {
     this.eventService.updateAction(this.eventss)

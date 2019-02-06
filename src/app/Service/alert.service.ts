@@ -10,7 +10,7 @@ export class AlertService {
   constructor(private dialog: MatDialog) {
   }
   openConfirmDialog(msg) {
-    this.dialog.open(AlertsComponent, {
+    return this.dialog.open(AlertsComponent, {
       width: '400px',
       panelClass: 'confirm-dialog-container',
       disableClose: true,

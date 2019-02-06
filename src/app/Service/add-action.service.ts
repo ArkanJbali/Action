@@ -26,6 +26,8 @@ export class AddActionService {
 private _posturl = 'https://loggitor-be.herokuapp.com/apps';
 private _actions = 'https://loggitor-be.herokuapp.com/actionsName';
 private serviceUrl = './assets/users.json';
+private _posturl2 = 'https://actiondb.herokuapp.com/addEvent';
+
 public s = [ {id: 9, title: 'ss', appName: 'BLM', defSeverity: 'Critical', comperator: 'bigger',
   percent: 50, eventSeverity: 'Critical', actionName: 'SMS', description: 'idk1'} ];
 getApp(): Observable<Apps[]> {
@@ -34,21 +36,22 @@ getApp(): Observable<Apps[]> {
  getAction(): Observable<Actions[]> {
   return this.http.get<Actions[]>(this._actions);
 }
-//  addAction (hero: Hero): Observable<NewAction[]> {
-//   return this.http.post<NewAction[]>(this._posturl2, hero, httpOptions);
+store(events: EventsInstance) {
+  return this.http.post(this._posturl2, events, this.httpOptions);
+}
+
+// addActions(action): Observable<EventsInstance> {
+//   return this.http.post<EventsInstance>(this.serviceUrl, action, this.httpOptions).pipe(
+//     tap((s: EventsInstance) => console.log(`added action w/ id=${action.id}`)),
+//     catchError(this.handleError<EventsInstance>('addActions'))
+//   );
 // }
-addActions(action): Observable<EventsInstance> {
-  return this.http.post<EventsInstance>(this.serviceUrl, action, this.httpOptions).pipe(
-    tap((s: EventsInstance) => console.log(`added action w/ id=${action.id}`)),
-    catchError(this.handleError<EventsInstance>('addActions'))
-  );
-}
- addAct (newAc): Observable<EventsInstance> {
-  return this.http.post<EventsInstance>(this.serviceUrl, newAc, this.httpOptions)
-    .pipe(
-      catchError(this.handleError('addAct', newAc))
-    );
-}
+//  addAct (newAc): Observable<EventsInstance> {
+//   return this.http.post<EventsInstance>(this.serviceUrl, newAc, this.httpOptions)
+//     .pipe(
+//       catchError(this.handleError('addAct', newAc))
+//     );
+// }
  initializeFormGroup() {
    this.form.setValue({
     $key: null,
@@ -63,6 +66,7 @@ addActions(action): Observable<EventsInstance> {
    });
  }
  populateForm(action) {
+  console.log(action.id);
    this.form.setValue({
      $key: action.id,
     title: action.solution,
@@ -79,14 +83,14 @@ addActions(action): Observable<EventsInstance> {
  // this.action.remove($key);
 }
 
-private handleError<T> (operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
+// private handleError<T> (operation = 'operation', result?: T) {
+//   return (error: any): Observable<T> => {
 
-    // TODO: send the error to remote logging infrastructure
-    console.error(error); // log to console instead
+//     // TODO: send the error to remote logging infrastructure
+//     console.error(error); // log to console instead
 
-    // Let the app keep running by returning an empty result.
-    return of(result as T);
-  };
-}
+//     // Let the app keep running by returning an empty result.
+//     return of(result as T);
+//   };
+// }
 }

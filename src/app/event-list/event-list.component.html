@@ -29,13 +29,13 @@
         <ng-container matColumnDef="defectSeverity">
           <mat-header-cell *matHeaderCellDef  mat-sort-header>Defect Severity</mat-header-cell>
           <mat-cell *matCellDef="let e">
-              <span *ngIf= " e.eventSeverity === _Critical "><i class="material-icons" style="color: rgb(238, 53, 53);">
+              <span *ngIf= " e.defSeverity === _Critical "><i class="material-icons" style="color: rgb(238, 53, 53);">
                   error</i></span>
-              <span *ngIf= " e.eventSeverity === _Error "><i class="material-icons" style="color: rgb(15, 248, 170);">
+              <span *ngIf= " e.defSeverity === _Error "><i class="material-icons" style="color: rgb(15, 248, 170);">
                 error</i></span>
-              <span *ngIf= " e.eventSeverity === _Warning "><i class="material-icons" style="color: rgb(248, 238, 96);">
+              <span *ngIf= " e.defSeverity === _Warning "><i class="material-icons" style="color: rgb(248, 238, 96);">
                 error</i></span>
-            {{e.defectSeverity}}
+            {{e.defSeverity}}
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="condition">
@@ -59,15 +59,16 @@
             <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
             <mat-cell *matCellDef="let e">{{e.description}}</mat-cell>
           </ng-container>
-  <ng-container matColumnDef="solution">
+  <!-- <ng-container matColumnDef="solution">
             <mat-header-cell *matHeaderCellDef>Solution</mat-header-cell>
             <mat-cell *matCellDef="let e">{{e.solution}}</mat-cell>
-          </ng-container>
+          </ng-container> -->
           <ng-container matColumnDef="edit">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let row">
               <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
-              <button mat-icon-button color="warn" (click)="deleteUser(row.id)"><mat-icon>delete_outline</mat-icon></button>
+              <button mat-icon-button color="warn" (click)="onDelete(row)"
+              class="delete" title="delete action"><mat-icon>delete_outline</mat-icon></button>
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="loading">
