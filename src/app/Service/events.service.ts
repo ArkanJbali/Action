@@ -12,18 +12,23 @@ const httpOptions: { headers: HttpHeaders } = {
 export class EventsService {
   [x: string]: any;
   private _posturl = 'https://loggitor-be.herokuapp.com/events';
-  private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
-
+  private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents';
+  private _page = 1;
+  private _items = 10;
+  private _posturlnew  = this._posturl2 + '/' + this._page + '/' +  this._items ;
   constructor(private http: HttpClient) {
    }
-   getPosts(): Observable<EventsInstance[]> {
-     return this.http.get<EventsInstance[]>(this._posturl2);
-   }
+  getPosts(_page: number , _items: number): Observable<EventsInstance[]> {
+     return this.http.get<EventsInstance[]>(this._posturl2 + '/' + _page + '/' + _items);
+  }
+/*    getItems(page: number) {
+     return this.http.get.get<EventsInstance[]>(this._posturlnew + '/' + page);
+   } */
 
      /** DELETE: delete the action from the server */
   deleteAction (action: EventsInstance | number): Observable<EventsInstance> {
     const id = typeof action === 'number' ? action : action.id;
-    const url = `${this._posturl2}/${id}`;
+    const url = `${this._posturlnew}/${id}`;
 
     return this.http.delete<EventsInstance>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted action id=${id}`)),
@@ -32,12 +37,13 @@ export class EventsService {
   }
   /** PUT: update the action on the server */
   updateAction (action: EventsInstance): Observable<any> {
-    const url = `${this._posturl2}/${action.id}`;
+    const url = `${this._posturlnew}/${action.id}`;
     return this.http.put(url, action, httpOptions).pipe(
       tap(_ => this.log(`updated action id=${action.id}`)),
       catchError(this.handleError<any>('updateAction'))
     );
   }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

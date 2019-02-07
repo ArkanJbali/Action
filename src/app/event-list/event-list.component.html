@@ -87,10 +87,27 @@
           <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(events!=null && events.data.length==0)}">
           </mat-footer-row>
       </mat-table>
-      <mat-paginator #paginator class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]">
-      </mat-paginator>
+
+     <!-- <mat-paginator #paginator class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]">
+      </mat-paginator>-->
     </div>
+
   </mat-card>
+  <button class="btn btn-dark" mat-raised-button (click)="onFirsts()">First</button>
+  <button class="btn btn-dark" mat-raised-button (click)="onPrevious()">Previous</button>
+  <button class="btn btn-dark" mat-raised-button (click)="onNext()">Next</button>
+  <label style="margin:20px;">
+    Number Of Events :
+    </label>
+    <select (change)="selectChangeHandler($event)" id="pagination" name="pagination" value=20 style="width:5%">
+        <option value=5>5</option>
+        <option value=10>10</option>
+        <option value=15>15</option>
+        <option value=20>20</option>
+      </select>
+
+
+
   <br>
 
 
