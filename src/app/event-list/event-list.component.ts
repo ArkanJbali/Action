@@ -55,7 +55,7 @@ _Error: String = 'Error';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
    onEdit(row) {
-    console.log(row);
+    console.log(row, '\n onEdit');
       this.newAction.populateForm(row);
       const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -68,7 +68,7 @@ _Error: String = 'Error';
      this.dialogService.openConfirmDialog('Are your sure to delete this record?').afterClosed().subscribe(
        res => {
       if ( res === true) {
-        this.eventsAct = this.eventsAct.filter(h => h !== action);
+       // this.eventsAct = this.eventsAct.filter(h => h !== action);
         this.eventService.deleteAction(action).subscribe();
         this.refresh();
         console.log('deleted\n' + action);

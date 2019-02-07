@@ -5,7 +5,18 @@ height: 100%;
 .button-row button{
   margin: 5px;
 }
-
+.btn-dialog-close{
+  width: 45px;
+  min-width: 0px !important;
+  height: 40px;
+  padding: 0px !important;
+  align-content: right;
+}
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
 }

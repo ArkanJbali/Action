@@ -10,6 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 
 export class AddActionService {
+  [x: string]: any;
  httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
   constructor(private http: HttpClient) { }
   form: FormGroup = new FormGroup({
@@ -27,6 +28,7 @@ private _posturl = 'https://loggitor-be.herokuapp.com/apps';
 private _actions = 'https://loggitor-be.herokuapp.com/actionsName';
 private serviceUrl = './assets/users.json';
 private _posturl2 = 'https://loggitor-be.herokuapp.com/addEvent';
+private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
 getApp(): Observable<Apps[]> {
    return this.http.get<Apps[]>(this._posturl);
  }
@@ -37,7 +39,14 @@ getApp(): Observable<Apps[]> {
 store(events: EventsInstance) {
   return this.http.post(this._posturl2, events, this.httpOptions);
 }
-
+updateAction (action: NewAction): Observable<NewAction> {
+  const url = `${this._UpdateURL}/${action.id}`;
+  return this.http.put(this._UpdateURL, action, this.httpOptions)
+  .pipe(
+    tap(_ => this.log(`updated action id=${action.id}`)),
+    catchError(this.handleError<any>('updateAction'))
+  );
+}
 addActions(action): Observable<NewAction> {
   return this.http.post<NewAction>(this._posturl2, action, this.httpOptions)
   .pipe(
@@ -82,14 +91,23 @@ addActions(action): Observable<NewAction> {
  // this.action.remove($key);
 }
 
-private handleError<T> (operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
 
-    // TODO: send the error to remote logging infrastructure
-    console.error(error); // log to console instead
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
 
-    // Let the app keep running by returning an empty result.
-    return of(result as T);
-  };
-}
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 }

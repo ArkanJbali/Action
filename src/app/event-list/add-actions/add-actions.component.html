@@ -1,11 +1,13 @@
 <div class="bg-dark text-white"  style="width:100%;">
 <div class="container">
     <mat-toolbar>
-      <span>Add New Action</span>
+      <span>{{addService.form.controls['$id'].value?"Modify Action":"New Action"}}</span>
+      <span class="fill-remaining-space"></span>
+      <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
 </div>
 
-<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white">
+<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white"  (submit)="onSubmit(addService.form.value)">
     <mat-grid-list cols="2" rowHeight="1:1">
       <mat-grid-tile>
         <div class="controlers-container">
@@ -49,10 +51,10 @@
               </mat-radio-group>
           </div>
             <div class="form-group">
-            <mat-form-field>
+            <mat-form-field >
                 <label>
                     Number of occurance(%): </label>
-              <input matInput type="number" min="0" max="100" value="application.percent" step="1"
+              <input matInput type="number" min="0" max="100" ngValue=[percent] step="1"
                style="width:50%; font-size: 15px;" formControlName="percent">
               <mat-hint>You can pick a number for percentage</mat-hint>
             </mat-form-field>
@@ -91,7 +93,7 @@
 
     <div class="button-row">
         <button mat-raised-button color="primary"
-        (click)="onSumbit(addService.form.value);" type="submit" [disabled]="addService.form.invalid">Save</button>
+  type="submit" [disabled]="addService.form.invalid">Save</button>
         <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
         <button mat-raised-button  color="warn"  mat-button mat-dialog-close  type="button">Cancel</button>
       </div>

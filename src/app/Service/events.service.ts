@@ -14,6 +14,7 @@ export class EventsService {
   private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
   private _DeleteURL = 'https://loggitor-be.herokuapp.com/deleteEvent';
   private checkkkk = 'https://loggitor-be.herokuapp.com//viewEvents/1/100';
+  private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
   constructor(private http: HttpClient) {
    }
    getPosts(): Observable<NewAction[]> {
@@ -32,15 +33,17 @@ export class EventsService {
     // );
   }
 getAll() {
-  return this.http.get<NewAction[]>(this._posturl2);
+  return this.http.get<NewAction[]>(this._UpdateURL);
 }
   /** PUT: update the action on the server */
-  updateAction (action: NewAction): Observable<any> {
-    const url = `${this._posturl2}/${action.id}`;
-    return this.http.put(url, action, httpOptions).pipe(
+  updateAction (action: NewAction): Observable<NewAction> {
+    const url = `${this._UpdateURL}/${action.id}`;
+    return this.http.put(url, action, httpOptions)
+    .pipe(
       tap(_ => this.log(`updated action id=${action.id}`)),
       catchError(this.handleError<any>('updateAction'))
     );
+   // return this.http.put<NewAction>(this._UpdateURL, action, this.httpOptions);
   }
   /**
    * Handle Http operation that failed.
