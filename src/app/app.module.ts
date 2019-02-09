@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MatTableModule, MatSortModule, MatCardModule, MatPaginatorModule,
   MatButtonModule, MatIconModule, MatGridListModule, MatFormFieldModule,
-  MatRadioModule, MatInputModule, MatSelectModule, MatToolbarModule } from '@angular/material';
+  MatRadioModule, MatInputModule, MatSelectModule, MatToolbarModule, MatSidenavModule } from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
@@ -57,6 +57,7 @@ import { MiddleTableComponent } from './home-page/middle-table/middle-table.comp
     MatGridListModule,
     MatIconModule,
     MatFormFieldModule,
+    MatSidenavModule,
     BsDropdownModule.forRoot()
   ],
   providers: [AddActionService, AddActionsComponent],

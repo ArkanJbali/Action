@@ -55,7 +55,7 @@ _Error: String = 'Error';
 
   getEvents2(): void {
     this.eventService.getPosts(this._page , this.selectedNum)
-    .subscribe(ev => this.eventsAct = ev);
+    .subscribe(ev => this.eventsAct2 = ev);
   }
 
 

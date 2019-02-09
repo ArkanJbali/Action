@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+html{
+  scroll-behavior: smooth;
+}
 /* mat-confirm-dialog (customised dialog) */
 .confirm-dialog-container .mat-dialog-container {
   border-radius: .25em .25em .4em .4em;

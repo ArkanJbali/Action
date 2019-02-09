@@ -5,11 +5,22 @@
 <app-add-action></app-add-action> -->
 
 <!-- Add Rest API <router-outlet></router-outlet> -->
-<div class="ul" style="height: 50px;">
+<mat-sidenav-container
+    class="example-container" >
+</mat-sidenav-container>
+<div class="ex " (click)="close();closeNav();" id="mySidenav">
+<mat-sidenav #sidenav  (keydown.escape)="close();closeNav();" disableClose class="text-white bg-dark">
+    <a class="btn-dialog-close overlay" mat-stroked-button (click)="close();closeNav();" tabIndex="-1"><mat-icon>clear</mat-icon></a>
+ <p> <button type="button" class="btn" style="padding: 12px 16px;" routerLink="home"> Home</button></p>
+<p><button type="button" class="btn" style="padding: 12px 16px;" routerLink="/eventlist"> Event List</button></p>
+</mat-sidenav>
+</div>
 
-  <div class="btn-group" dropdown>
-      <button type="button" class="btn" style="padding: 12px 16px;" routerLink="home"> Home</button>
-      <button id="button-split" type="button" dropdownToggle class="btn btn-dark dropdown-toggle dropdown-toggle-split"
+<div class="ul">
+
+  <div class="btn-group" dropdown align="center">
+      <button type="button" class="btn " style="padding: 12px 16px;" routerLink="home"> Home</button>
+      <!-- <button id="button-split" type="button" dropdownToggle class="btn btn-dark dropdown-toggle dropdown-toggle-split"
               aria-controls="dropdown-split">
         <span class="caret"></span>
         <span class="sr-only">Split button!</span>
@@ -23,27 +34,23 @@
         <li class="divider dropdown-divider"></li>
         <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <span><button class="btn" href="#Rules">Rules</button></span>
     <span><button class="btn" href="#Solution">Solutions</button></span>
     <span><button class="btn" href="#About">About</button></span>
-    <li style="float: right"><img src="./assets/a.png" alt="Amdocs Logo" height="50"></li>
+    <li style="float: right"><img src="./assets/a.png" alt="Amdocs Logo" height="45"></li>
 </div><br>
 
-<!-- <ul class="ul">
-  <li  class="dropdown">
-  <a href="#home" class="btn-secondary dropdown-toggle">Home</a>
 
-    </li>
-  <li><a href="#Rules">Rules</a></li>
-  <li><a href="#Solution">Solutions</a></li>
-  <li><a href="#About">About</a></li>
-  <li style="float: right"><img src="./assets/a.png" alt="Amdocs Logo" height="50"></li>
-  </ul> -->
   <br>
-  <div class="container" >
+  <div class="container" id="main" >
+    <div class="container" align="right">
+        <i class="material-icons">
+            <button mat-button (click)="sidenav.open();openNav();"><mat-icon style="font-size:25px;">menu</mat-icon></button>
+              </i>
+    </div>
 
     <div class="container">
 
@@ -56,3 +63,5 @@
 
 
 </div>
+
+
