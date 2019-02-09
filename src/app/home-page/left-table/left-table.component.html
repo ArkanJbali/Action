@@ -1,0 +1,39 @@
+<!-- Actions By Severity -->
+<mat-card class="text-white bg-dark">
+  <div>
+      <strong style="font-size: 20px;">Actions by Severity</strong>
+  </div>
+  <mat-table #table [dataSource]="bySevData" matSort class='table text-white bg-dark'>
+    <ng-container matColumnDef="Severity">
+      <mat-header-cell *matHeaderCellDef>Severity</mat-header-cell>
+      <mat-cell *matCellDef="let e">{{e.severity}}</mat-cell>
+    </ng-container>
+   <ng-container matColumnDef="SevNum">
+        <mat-header-cell *matHeaderCellDef   mat-sort-header>Severity Num</mat-header-cell>
+        <mat-cell *matCellDef="let e">{{e.sevCount}}</mat-cell>
+      </ng-container>
+     <ng-container matColumnDef="Def">
+        <mat-header-cell *matHeaderCellDef   mat-sort-header>Def</mat-header-cell>
+        <mat-cell *matCellDef="let e">{{e.sevPercentage}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading Data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No Data.
+        </mat-footer-cell>
+      </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns3" color="primary"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:displayedColumns3"></mat-row>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':bySevData!=null}">
+      </mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(bySevData!=null && bySevData.data.length==0)}">
+      </mat-footer-row>
+  </mat-table>
+  <mat-paginator #paginator  class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons>
+  </mat-paginator>
+
+</mat-card>

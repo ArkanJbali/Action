@@ -18,6 +18,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddActionsComponent } from './event-list/add-actions/add-actions.component';
+import { AlertsComponent } from './alerts/alerts.component';
+import { LeftTableComponent } from './home-page/left-table/left-table.component';
+import { RightTableComponent } from './home-page/right-table/right-table.component';
+import { MiddleTableComponent } from './home-page/middle-table/middle-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +30,10 @@ import { AddActionsComponent } from './event-list/add-actions/add-actions.compon
     EventListComponent,
     ChartsComponent,
     AddActionsComponent,
+    AlertsComponent,
+    LeftTableComponent,
+    RightTableComponent,
+    MiddleTableComponent,
     // NgbdModalConfig
   ],
   imports: [
@@ -53,6 +61,6 @@ import { AddActionsComponent } from './event-list/add-actions/add-actions.compon
   ],
   providers: [AddActionService, AddActionsComponent],
   bootstrap: [AppComponent],
-  entryComponents: [AddActionsComponent]
+  entryComponents: [AddActionsComponent, AlertsComponent]
 })
 export class AppModule { }

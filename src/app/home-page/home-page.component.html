@@ -1,114 +1,18 @@
 
 <div class="container">
-    <mat-card class="text-white bg-dark">
-        <div>
-            <strong style="font-size: 20px;">Actions Log</strong>
-        </div>
-        <br>
-  <table mat-table [dataSource]="ActionLogData" matSort class="table text-white bg-dark">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let e"> {{e.id}} </td>
-      </ng-container>
-      <ng-container matColumnDef="eventName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Event Name </th>
-        <td mat-cell *matCellDef="let e"> {{e.eventName}} </td>
-      </ng-container>
-      <ng-container matColumnDef="severity">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Severity </th>
-        <td mat-cell *matCellDef="let e"> <span *ngIf= " e.severity === _Critical "><i class="material-icons" style="color: rgb(238, 53, 53);">
-            error</i></span>
-        <span *ngIf= " e.severity === _Error "><i class="material-icons" style="color: rgb(15, 248, 170);">
-            notification_important</i></span>
-        <span *ngIf= " e.severity === _Warning "><i class="material-icons" style="color: rgb(248, 238, 96);">
-                warning</i></span>{{e.severity}} </td>
-      </ng-container>
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let e"> {{e.description}} </td>
-      </ng-container>
-      <ng-container matColumnDef="Solution">
-          <th mat-header-cell *matHeaderCellDef> Solution </th>
-          <td mat-cell *matCellDef="let e"> {{e.fixAction}} </td>
-        </ng-container>
-        <ng-container matColumnDef="loading">
-          <td mat-footer-cell *matFooterCellDef colspan="6">
-            Loading Data...
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="noData">
-          <td mat-footer-cell *matFooterCellDef colspan="6">
-            No Data.
-          </td>
-        </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <tr mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':ActionLogData!=null}">
-      </tr>
-      <tr mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(ActionLogData!=null && ActionLogData.data.length==0)}">
-      </tr>
-    </table>
-    <mat-paginator class="text-white bg-dark" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</mat-card>
+ <app-middle-table></app-middle-table>
+
+
 </div>
 <br><br><br>
 <div class="row">
     <!-- Actions By App -->
 <div class="col" align="left">
-  <mat-card class="text-white bg-dark">
-    <div>
-        <strong style="font-size: 20px;">Actions Log</strong>
-    </div>
-    <br>
-<table mat-table [dataSource]="byAppData" matSort class="table text-white bg-dark">
-  <ng-container matColumnDef="AppName">
-    <th mat-header-cell *matHeaderCellDef> App Name </th>
-    <td mat-cell *matCellDef="let e"> {{e.appName}} </td>
-  </ng-container>
-  <ng-container matColumnDef="ActionNum">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action Num </th>
-    <td mat-cell *matCellDef="let e"> {{e.appCount}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="Def">
-      <th mat-header-cell *matHeaderCellDef> Def </th>
-      <td mat-cell *matCellDef="let e"> {{e.percentage}} </td>
-    </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-</table>
-<mat-paginator class="text-white bg-dark" #paginator2 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</mat-card>
+<app-right-table></app-right-table>
 </div>
 
   <div class="col" align="right">
-    <!-- Actions By Severity -->
-    <mat-card class="text-white bg-dark">
-      <div>
-          <strong style="font-size: 20px;">Actions Log</strong>
-      </div>
-      <br>
-  <table mat-table [dataSource]="bySevData" matSort class="table text-white bg-dark">
-    <ng-container matColumnDef="Severity">
-      <th mat-header-cell *matHeaderCellDef> Severity </th>
-      <td mat-cell *matCellDef="let e"> {{e.severity}} </td>
-    </ng-container>
-    <ng-container matColumnDef="SevNum">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Severity Num </th>
-      <td mat-cell *matCellDef="let e"> {{e.sevCount}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Def">
-        <th mat-header-cell *matHeaderCellDef> Def </th>
-        <td mat-cell *matCellDef="let e"> {{e.sevPercentage}} </td>
-      </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
-  </table>
-  <mat-paginator class="text-white bg-dark" #paginator3 [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </mat-card>
+<app-left-table></app-left-table>
 
   </div>
 </div>

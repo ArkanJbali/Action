@@ -1,6 +1,6 @@
 import { EventsInstance, NewAction } from './../Model/EventsList.model';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 const httpOptions: { headers: HttpHeaders } = {
@@ -11,6 +11,7 @@ const httpOptions: { headers: HttpHeaders } = {
 })
 export class EventsService {
   [x: string]: any;
+
   private _posturl = 'https://loggitor-be.herokuapp.com/events';
   private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents';
   private _page = 1;
@@ -25,23 +26,54 @@ export class EventsService {
      return this.http.get.get<EventsInstance[]>(this._posturlnew + '/' + page);
    } */
 
-     /** DELETE: delete the action from the server */
-  deleteAction (action: EventsInstance | number): Observable<EventsInstance> {
-    const id = typeof action === 'number' ? action : action.id;
-    const url = `${this._posturlnew}/${id}`;
+  private _posturl22 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
+  private _DeleteURL = 'https://loggitor-be.herokuapp.com/deleteEvent';
+  private checkkkk = 'https://loggitor-be.herokuapp.com//viewEvents/1/100';
+  private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
+  
+   getPosts2(): Observable<NewAction[]> {
+     return this.http.get<NewAction[]>(this.checkkkk);
+   }
 
-    return this.http.delete<EventsInstance>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted action id=${id}`)),
-      catchError(this.handleError<EventsInstance>('deleteAction'))
-    );
+
+     /** DELETE: delete the action from the server */
+  deleteAction (action: NewAction | number): Observable<NewAction> {
+    const id = typeof action === 'number' ? action : action.id;
+
+//     const url = `${this._posturlnew}/${id}`;
+
+//     return this.http.delete<EventsInstance>(url, httpOptions).pipe(
+//       tap(_ => this.log(`deleted action id=${id}`)),
+//       catchError(this.handleError<EventsInstance>('deleteAction'))
+//     );
+
+    const url = `${this._DeleteURL}/${id}`;
+    console.log('done' + action);
+    return this.http.delete<NewAction>(url, httpOptions);
+    // .pipe(
+    //   tap(_ => this.log(`deleted action id=${id}`)),
+    //   catchError(this.handleError<EventsInstance>('deleteAction'))
+    // );
+
   }
+getAll() {
+  return this.http.get<NewAction[]>(this._UpdateURL);
+}
   /** PUT: update the action on the server */
-  updateAction (action: EventsInstance): Observable<any> {
-    const url = `${this._posturlnew}/${action.id}`;
-    return this.http.put(url, action, httpOptions).pipe(
+
+//  updateAction (action: EventsInstance): Observable<any> {
+//     const url = `${this._posturlnew}/${action.id}`;
+//     return this.http.put(url, action, httpOptions).pipe(
+
+  updateAction (action: NewAction): Observable<NewAction> {
+    const url = `${this._UpdateURL}/${action.id}`;
+    return this.http.put(url, action, httpOptions)
+    .pipe(
+
       tap(_ => this.log(`updated action id=${action.id}`)),
       catchError(this.handleError<any>('updateAction'))
     );
+   // return this.http.put<NewAction>(this._UpdateURL, action, this.httpOptions);
   }
 
   /**

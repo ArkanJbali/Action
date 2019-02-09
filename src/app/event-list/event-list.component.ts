@@ -1,3 +1,4 @@
+import { AlertService } from './../Service/alert.service';
 import { AddActionService } from 'src/app/Service/add-action.service';
 import { EventsService } from './../Service/events.service';
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
@@ -6,8 +7,9 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
 import { AddActionsComponent } from './add-actions/add-actions.component';
 import { NewAction, EventsInstance } from '../Model/EventsList.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -17,24 +19,28 @@ import { Location } from '@angular/common';
 export class EventListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'solution', 'description', 'edit'];
+  displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'description', 'edit'];
 public events;
+
 private _page = 1;
 private selectedNum = 5;
 
-eventsAct: EventsInstance[];
-@Input() eventss: EventsInstance;
+eventsAct2: EventsInstance[];
+@Input() eventss2: EventsInstance;
+
+eventsAct: NewAction[];
+@Input() eventss: NewAction;
 _Critical: String = 'Critical';
 _Warning: String = 'Warning';
 _Error: String = 'Error';
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
     private newAction: AddActionService,
-    private route: ActivatedRoute,
-    private location: Location
+    private route: Router,
+    private location: Location,
+    private dialogService: AlertService
     ) { }
   ngOnInit() {
-    this.getEvents2();
    // this.eventService.getPosts().subscribe(data => this.events = data);
    this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
     if (!data) {
@@ -46,10 +52,13 @@ _Error: String = 'Error';
     this.events.paginator = this.paginator;
   });
   }
+
   getEvents2(): void {
     this.eventService.getPosts(this._page , this.selectedNum)
     .subscribe(ev => this.eventsAct = ev);
   }
+
+
   OnAdd() {
     this.newAction.initializeFormGroup();
     const dialogConfig = new MatDialogConfig();
@@ -60,6 +69,7 @@ _Error: String = 'Error';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
    onEdit(row) {
+    console.log(row, '\n onEdit');
       this.newAction.populateForm(row);
       const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -68,17 +78,25 @@ _Error: String = 'Error';
     dialogConfig.height = '100%';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
-   onDelete(action: EventsInstance): void {
-     if (confirm('Are You Sure to delete this record?')) {
-// this.newAction.deleteAction(action);
-      this.eventsAct = this.eventsAct.filter(h => h !== action);
-  this.eventService.deleteAction(action).subscribe();
-     }
+   onDelete(action: NewAction): void {
+     this.dialogService.openConfirmDialog('Are your sure to delete this record?').afterClosed().subscribe(
+       res => {
+      if ( res === true) {
+       // this.eventsAct = this.eventsAct.filter(h => h !== action);
+        this.eventService.deleteAction(action).subscribe();
+        this.refresh();
+        console.log('deleted\n' + action);
+      } else {
+        console.log('not deleted');
+      }}
+     );
    }
    goBack(): void {
     this.location.back();
   }
-
+  refresh(): void {
+    window.location.reload();
+}
  save(): void {
     this.eventService.updateAction(this.eventss)
       .subscribe(() => this.goBack());
