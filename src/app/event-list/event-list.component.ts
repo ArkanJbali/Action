@@ -21,6 +21,13 @@ export class EventListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns = ['id', 'app', 'defectSeverity', 'condition', 'threshold', 'severity', 'action', 'description', 'edit'];
 public events;
+
+private _page = 1;
+private selectedNum = 5;
+
+eventsAct2: EventsInstance[];
+@Input() eventss2: EventsInstance;
+
 eventsAct: NewAction[];
 @Input() eventss: NewAction;
 _Critical: String = 'Critical';
@@ -35,7 +42,7 @@ _Error: String = 'Error';
     ) { }
   ngOnInit() {
    // this.eventService.getPosts().subscribe(data => this.events = data);
-   this.eventService.getPosts().subscribe(data => {
+   this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
     if (!data) {
       return;
     }
@@ -45,6 +52,13 @@ _Error: String = 'Error';
     this.events.paginator = this.paginator;
   });
   }
+
+  getEvents2(): void {
+    this.eventService.getPosts(this._page , this.selectedNum)
+    .subscribe(ev => this.eventsAct = ev);
+  }
+
+
   OnAdd() {
     this.newAction.initializeFormGroup();
     const dialogConfig = new MatDialogConfig();
@@ -86,5 +100,69 @@ _Error: String = 'Error';
  save(): void {
     this.eventService.updateAction(this.eventss)
       .subscribe(() => this.goBack());
+  }
+  onNext(): any {
+    this._page++;
+    this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
+      if (data.length === 0) {
+       this._page--;
+         return;
+      } else {
+     // this.events = data;
+      this.events = new MatTableDataSource(data);
+      this.events.sort = this.sort;
+      this.events.paginator = this.paginator;
+     }
+    });
+    // this.getEvents2();
+    // this.eventService.getPosts().subscribe(data => this.events = data);
+
+  }
+  onPrevious(): void {
+    this._page--;
+    // this.getEvents2();
+    // this.eventService.getPosts().subscribe(data => this.events = data);
+    this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
+     if (data.length === 0 || this._page === 0) {
+      this._page++;
+       return;
+     } else {
+      this.events = new MatTableDataSource(data);
+      this.events.sort = this.sort;
+      this.events.paginator = this.paginator;
+     }
+    // this.events = data;
+
+   });
+  }
+  onFirsts(): void {
+    this._page = 1;
+   // this.getEvents2();
+    // this.eventService.getPosts().subscribe(data => this.events = data);
+    this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
+     if (data.length === 0) {
+       return;
+     } else {
+      this.events = new MatTableDataSource(data);
+      this.events.sort = this.sort;
+      this.events.paginator = this.paginator;
+     }
+
+   });
+  }
+  selectChangeHandler (event: any) {
+    this.selectedNum = event.target.value;
+    console.log('hello' + this.selectedNum);
+    this.getEvents2();
+    this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
+      if (!data) {
+        return;
+      }
+     // this.events = data;
+      this.events = new MatTableDataSource(data);
+      this.events.sort = this.sort;
+      this.events.paginator = this.paginator;
+      console.log('hello');
+    });
   }
 }
