@@ -39,12 +39,14 @@ getApp(): Observable<Apps[]> {
 store(events: EventsInstance) {
   return this.http.post(this._posturl2, events, this.httpOptions);
 }
-updateAction (action: NewAction): Observable<NewAction> {
-  const url = `${this._UpdateURL}/${action.id}`;
-  return this.http.put(this._UpdateURL, action, this.httpOptions)
+updateAction (action): Observable<NewAction> {
+    // const url = `${this._UpdateURL}/${action.$id}`;
+    console.log('checked id', action.$id, '\n');
+    // alert(action.$id);
+  return this.http.put<NewAction>(this._UpdateURL, action, this.httpOptions)
   .pipe(
-    tap(_ => this.log(`updated action id=${action.id}`)),
-    catchError(this.handleError<any>('updateAction'))
+    tap((s: NewAction) => console.log(action)),
+    catchError(this.handleError<NewAction>('updateAction'))
   );
 }
 addActions(action): Observable<NewAction> {

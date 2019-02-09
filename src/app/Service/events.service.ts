@@ -35,16 +35,16 @@ export class EventsService {
 getAll() {
   return this.http.get<NewAction[]>(this._UpdateURL);
 }
-  /** PUT: update the action on the server */
-  updateAction (action: NewAction): Observable<NewAction> {
-    const url = `${this._UpdateURL}/${action.id}`;
-    return this.http.put(url, action, httpOptions)
-    .pipe(
-      tap(_ => this.log(`updated action id=${action.id}`)),
-      catchError(this.handleError<any>('updateAction'))
-    );
-   // return this.http.put<NewAction>(this._UpdateURL, action, this.httpOptions);
-  }
+  // /** PUT: update the action on the server */
+  // updateAction (action: NewAction): Observable<NewAction> {
+  //   const url = `${this._UpdateURL}/${action.id}`;
+  //   return this.http.put(url, action, httpOptions)
+  //   .pipe(
+  //     tap(_ => this.log(`updated action id=${action.id}`)),
+  //     catchError(this.handleError<any>('updateAction'))
+  //   );
+  //  // return this.http.put<NewAction>(this._UpdateURL, action, this.httpOptions);
+  // }
   /**
    * Handle Http operation that failed.
    * Let the app continue.

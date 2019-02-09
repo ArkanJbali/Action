@@ -66,7 +66,9 @@ onSubmit(newEvent) {
         });
         this.refresh();
       } else {
-        this.addService.updateAction(this.addService.form.value);
+        this.addService.updateAction(this.addService.form.value).subscribe((val) => {
+          console.log('Put call successful value returned in body',
+                      val); });
         // console.log(this.ev + '\n' + this.success);
         console.log('Updatess', this.success);
           this.onClose();
