@@ -1,16 +1,20 @@
+import { NotificationsService } from './../../Service/notifications.service';
 import { EventsService } from './../../Service/events.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventsInstance, NewAction } from './../../Model/EventsList.model';
 import { AddActionComponent } from './../../add-action/add-action.component';
 import { MatDialogRef } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { AddActionService } from 'src/app/Service/add-action.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Component({
   selector: 'app-add-actions',
   templateUrl: './add-actions.component.html',
   styleUrls: ['./add-actions.component.css']
 })
+
 export class AddActionsComponent implements OnInit {
   public application;
   public actions;
@@ -23,7 +27,8 @@ export class AddActionsComponent implements OnInit {
   constructor(public addService:  AddActionService,
     public dialogRef: MatDialogRef<AddActionComponent>,
     private http: HttpClient,
-    public eventServ: EventsService
+    public eventServ: EventsService,
+    private NotifServ: NotificationsService
     ) { }
   ngOnInit() {
     this.addService.getApp().subscribe(data => {
@@ -37,21 +42,20 @@ export class AddActionsComponent implements OnInit {
     if (!data) {
       return;
     }
-    console.log(data);
     this.actions = data;
   });
 }
 onClear() {
   this.addService.form.reset();
   this.addService.initializeFormGroup();
- // this.notificationServ.success(':: Submitted Successfully');
+  this.NotifServ.warn(': : Cleared');
 }
 onSubmit(newEvent) {
   this.error = '';
   this.success = '';
   console.log('you submitted value:', newEvent, '\n', this.addService.form.value);
   if (this.addService.form.valid) {
-    if (!this.addService.form.get('$id').value) {
+    if (!this.addService.form.get('id').value) {
     this.addService.addActions(this.addService.form.value)
       .subscribe(
         (res: NewAction) => {
@@ -72,8 +76,9 @@ onSubmit(newEvent) {
         // console.log(this.ev + '\n' + this.success);
         console.log('Updatess', this.success);
           this.onClose();
-          // this.refresh();
+           this.refresh();
       }
+      this.NotifServ.success(': : Submitted successfully');
       this.addService.form.reset();
     this.addService.initializeFormGroup();
       }

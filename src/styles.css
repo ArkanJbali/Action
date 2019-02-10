@@ -63,3 +63,20 @@ border-radius: 0px;
 ::-webkit-scrollbar-thumb:hover {
   background: white;
 }
+
+/* notification */
+snack-bar-container.success {
+  background-color: #5cb85c;
+  color : #fff;
+}
+
+snack-bar-container.warn {
+  background-color: #f99157;
+  color : #fff;
+}
+
+
+snack-bar-container.notification simple-snack-bar{
+  font-size: 18px !important;
+  font-weight: bold;
+}

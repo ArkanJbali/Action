@@ -1,7 +1,7 @@
 <div class="bg-dark text-white"  style="width:100%;">
 <div class="container">
     <mat-toolbar>
-      <span>{{addService.form.controls['$id'].value?"Modify Action":"New Action"}}</span>
+      <span>{{addService.form.controls['id'].value?"Modify Action":"New Action"}}</span>
       <span class="fill-remaining-space"></span>
       <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
@@ -12,7 +12,7 @@
       <mat-grid-tile>
         <div class="controlers-container">
             <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Event Defntion</label><br>
-            <input type="hidden" formControlName="$id">
+            <input type="hidden" formControlName="id">
             <mat-form-field>
                 <label style="margin:5px;" class="font-weight-bold"> Event Title: </label>
                 <input  formControlName="eventName" matInput >

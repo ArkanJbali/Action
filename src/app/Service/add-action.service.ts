@@ -14,7 +14,7 @@ export class AddActionService {
  httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
   constructor(private http: HttpClient) { }
   form: FormGroup = new FormGroup({
-    $id: new FormControl(null),
+    id: new FormControl(null),
     eventName: new FormControl('', [Validators.required, Validators.minLength(5)]),
     appName: new FormControl('', Validators.required),
     defSeverity: new FormControl(''),
@@ -64,7 +64,7 @@ addActions(action): Observable<NewAction> {
 // }
  initializeFormGroup() {
    this.form.setValue({
-    $id: 0,
+    id: 0,
     eventName: '',
     appName: '',
     defSeverity: '',
@@ -78,7 +78,7 @@ addActions(action): Observable<NewAction> {
  populateForm(action) {
   console.log(action.id);
    this.form.setValue({
-    $id: action.id,
+    id: action.id,
     eventName: action.eventName,
     appName: action.appName,
     defSeverity: action.defSeverity,

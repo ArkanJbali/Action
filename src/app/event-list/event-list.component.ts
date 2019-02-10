@@ -10,6 +10,7 @@ import { NewAction, EventsInstance } from '../Model/EventsList.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
+import { NotificationsService } from '../Service/notifications.service';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -38,7 +39,8 @@ _Error: String = 'Error';
     private newAction: AddActionService,
     private route: Router,
     private location: Location,
-    private dialogService: AlertService
+    private dialogService: AlertService,
+    private NotifServ: NotificationsService
     ) { }
   ngOnInit() {
    // this.eventService.getPosts().subscribe(data => this.events = data);
@@ -86,6 +88,7 @@ _Error: String = 'Error';
         this.eventService.deleteAction(action).subscribe();
         this.refresh();
         console.log('deleted\n' + action);
+       this.NotifServ.warn('! Deleted successfully');
       } else {
         console.log('not deleted');
       }}

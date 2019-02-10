@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { MatTableModule, MatSortModule, MatCardModule, MatPaginatorModule,
+import { MatTableModule, MatSortModule, MatCardModule, MatPaginatorModule, MatSnackBarModule,
   MatButtonModule, MatIconModule, MatGridListModule, MatFormFieldModule,
   MatRadioModule, MatInputModule, MatSelectModule, MatToolbarModule, MatSidenavModule } from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -53,6 +53,7 @@ import { MiddleTableComponent } from './home-page/middle-table/middle-table.comp
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatSnackBarModule,
     MatButtonModule,
     MatGridListModule,
     MatIconModule,
