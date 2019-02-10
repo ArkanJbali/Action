@@ -13,7 +13,7 @@ export class AddActionService {
   [x: string]: any;
  httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
   constructor(private http: HttpClient) { }
-  form: FormGroup = new FormGroup({
+ form: FormGroup = new FormGroup({
     id: new FormControl(null),
     eventName: new FormControl('', [Validators.required, Validators.minLength(5)]),
     appName: new FormControl('', Validators.required),

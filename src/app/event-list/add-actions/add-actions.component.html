@@ -6,99 +6,146 @@
       <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
 </div>
-
-<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white"  (submit)="onSubmit(addService.form.value)">
-    <mat-grid-list cols="2" rowHeight="1:1">
-      <mat-grid-tile>
-        <div class="controlers-container">
-            <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Event Defntion</label><br>
-            <input type="hidden" formControlName="id">
-            <mat-form-field>
-                <label style="margin:5px;" class="font-weight-bold"> Event Title: </label>
-                <input  formControlName="eventName" matInput >
-                <mat-error *ngIf="addService.form.controls['eventName'].errors?.minlength">title is required.</mat-error>
+<mat-horizontal-stepper linear #stepper class=" normal-form p-3 mb-2 bg-dark text-white">
+  <mat-step [stepControl]="addService.form" errorMessage="Action is required.">
+    <form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white" >
+      <ng-template matStepLabel>Fill out new action</ng-template>
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+          <div class="controlers-container">
+              <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Event Defntion</label><br>
+              <input type="hidden" formControlName="id">
+              <mat-form-field>
+                  <label style="margin:5px;" class="font-weight-bold"> Event Title: </label>
+                  <input  formControlName="eventName" matInput >
+                  <mat-error *ngIf="addService.form.controls['eventName'].errors?.minlength">title is required.</mat-error>
+                </mat-form-field>
+              <div class="form-group">
+                <mat-form-field>
+                <select matNativeControl  formControlName="appName">
+                <option label="--select application --"></option>
+                <option *ngFor="let app of application" [ngValue]="app.appName">{{app.appName}}  </option>
+                </select>
+                <mat-hint>You can pick up an application</mat-hint>
+                <mat-error *ngIf="addService.form.controls['appName'].errors?.required">Please choose an app</mat-error>
               </mat-form-field>
+            </div>
             <div class="form-group">
               <mat-form-field>
-              <select matNativeControl  formControlName="appName">
-              <option label="--select application --"></option>
-              <option *ngFor="let app of application" [ngValue]="app.appName">{{app.appName}}  </option>
-              </select>
-              <mat-hint>You can pick up an application</mat-hint>
-              <mat-error *ngIf="addService.form.controls['appName'].errors?.required">Please choose an app</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <mat-form-field>
-              <select matNativeControl  formControlName="defSeverity">
-              <option label="--select defect Severity --"></option>
+                <select matNativeControl  formControlName="defSeverity">
+                <option label="--select defect Severity --"></option>
+                <option label="Critical" value="Critical"></option>
+                <option label="Warning" value="Warning"></option>
+                <option label="Error" value="Error"></option>
+                </select>
+                <mat-hint>You can pick up an defect severity</mat-hint>
+                <!-- <mat-error *ngIf="addService.form.controls['defSeverity'].errors?.required">Please choose the defect severity</mat-error> -->
+              </mat-form-field>
+  </div>
+  <div class="form-group">
+  <label style="margin:5px;" class="font-weight-bold"> Comperator: </label>
+                <input matInput placeholder="Input" style="display: none" >
+                <mat-radio-group  formControlName="comperator">
+                  <mat-radio-button value="Lower Than">Lower Than</mat-radio-button>
+                  <mat-radio-button value="Equal">Equal</mat-radio-button>
+                  <mat-radio-button value="Greater Than">Greater Than</mat-radio-button>
+                  <mat-error *ngIf="addService.form.controls['comperator'].errors?.required">one is required.</mat-error>
+                </mat-radio-group>
+            </div>
+              <div class="form-group">
+              <mat-form-field >
+                  <label>
+                      Number of occurance(%): </label>
+                <input matInput type="number" min="0" max="100" ngValue=[percent] step="1"
+                 style="width:50%; font-size: 15px;" formControlName="percent">
+                <mat-hint>You can pick a number for percentage</mat-hint>
+              </mat-form-field>
+              </div>
+           </div>
+        </mat-grid-tile>
+  <mat-grid-tile>
+      <div class="controlers-container">
+      <div class="form-group">
+          <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Action Defntion</label><br>
+          <mat-form-field>
+              <select matNativeControl formControlName="eventSeverity">
+              <option label="--select action severity --"></option>
               <option label="Critical" value="Critical"></option>
               <option label="Warning" value="Warning"></option>
               <option label="Error" value="Error"></option>
               </select>
-              <mat-hint>You can pick up an defect severity</mat-hint>
-              <!-- <mat-error *ngIf="addService.form.controls['defSeverity'].errors?.required">Please choose the defect severity</mat-error> -->
+              <mat-hint>You can pick up an action severity</mat-hint>
+              <mat-error *ngIf="addService.form.controls['eventSeverity'].errors?.required">Please choose the action severity</mat-error>
             </mat-form-field>
-</div>
-<div class="form-group">
-<label style="margin:5px;" class="font-weight-bold"> Comperator: </label>
-              <input matInput placeholder="Input" style="display: none" >
-              <mat-radio-group  formControlName="comperator">
-                <mat-radio-button value="Lower Than">Lower Than</mat-radio-button>
-                <mat-radio-button value="Equal">Equal</mat-radio-button>
-                <mat-radio-button value="Greater Than">Greater Than</mat-radio-button>
-                <mat-error *ngIf="addService.form.controls['comperator'].errors?.required">one is required.</mat-error>
-              </mat-radio-group>
-          </div>
+            </div>
             <div class="form-group">
-            <mat-form-field >
-                <label>
-                    Number of occurance(%): </label>
-              <input matInput type="number" min="0" max="100" ngValue=[percent] step="1"
-               style="width:50%; font-size: 15px;" formControlName="percent">
-              <mat-hint>You can pick a number for percentage</mat-hint>
-            </mat-form-field>
-            </div>
-         </div>
-      </mat-grid-tile>
-<mat-grid-tile>
-    <div class="controlers-container">
-    <div class="form-group">
-        <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Action Defntion</label><br>
-        <mat-form-field>
-            <select matNativeControl formControlName="eventSeverity">
-            <option label="--select action severity --"></option>
-            <option label="Critical" value="Critical"></option>
-            <option label="Warning" value="Warning"></option>
-            <option label="Error" value="Error"></option>
-            </select>
-            <mat-hint>You can pick up an action severity</mat-hint>
-            <mat-error *ngIf="addService.form.controls['eventSeverity'].errors?.required">Please choose the action severity</mat-error>
-          </mat-form-field>
-          </div>
-          <div class="form-group">
-          <mat-form-field>
-              <select matNativeControl  formControlName="actionName">
-              <option label="--select action --"></option>
-              <option *ngFor="let act of actions" [ngValue]="actions.name" value="{{act.name}}"> {{act.name}}  </option>
-              </select>
-              <mat-hint>You can pick up an action</mat-hint>
-              <mat-error *ngIf="addService.form.controls['actionName'].errors?.required">Please choose the action</mat-error>
-            </mat-form-field><br>
             <mat-form-field>
-              <label style="margin:5px;" class="font-weight-bold"> Action description / suggested solution: </label>
-              <textarea matInput formControlName="description"></textarea>
-            </mat-form-field>
-            </div>
+                <select matNativeControl  formControlName="actionName">
+                <option label="--select action --"></option>
+                <option *ngFor="let act of actions" [ngValue]="actions.name" value="{{act.name}}"> {{act.name}}  </option>
+                </select>
+                <mat-hint>You can pick up an action</mat-hint>
+                <mat-error *ngIf="addService.form.controls['actionName'].errors?.required">Please choose the action</mat-error>
+              </mat-form-field><br>
+              <mat-form-field>
+                <label style="margin:5px;" class="font-weight-bold"> Action description / suggested solution: </label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+              </div>
 
-    <div class="button-row">
-        <button mat-raised-button color="primary"
-  type="submit" [disabled]="addService.form.invalid">Save</button>
-        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
-        <button mat-raised-button  color="warn"  mat-button mat-dialog-close  type="button">Cancel</button>
+      <div class="button-row">
+          <button mat-raised-button color="primary"
+    type="submit" [disabled]="addService.form.invalid">Save</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          <button mat-raised-button  color="warn"  mat-button mat-dialog-close  type="button">Cancel</button>
+        </div>
       </div>
+  </mat-grid-tile>
+      </mat-grid-list>
+      <div>
+        <button mat-button  matStepperNext class="btn btn-outline-primary">Next</button>
+      </div>
+    </form>
+
+
+
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" errorMessage="User information is required.">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out user information</ng-template>
+          <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Choose an user :</label><br>
+      <mat-form-field>
+        <select matNativeControl  formControlName="secondCtrl">
+          <option label="--select User --"></option>
+          <option label="Ahmad" value="Ahmad"></option>
+          <option label="Mhmd" value="Mhmd"></option>
+          <option label="Mhmood" value="Mhmood"></option>
+          </select>
+          <mat-hint>You can pick up an user</mat-hint>
+      </mat-form-field>
+   <br><br>
+      <mat-form-field>
+        <label style="margin:5px;"> Write a message to send : </label>
+        <textarea matInput formControlName="secondCtrl" required></textarea>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.<br>
+    Thank You.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button>Submit</button>
     </div>
-</mat-grid-tile>
-    </mat-grid-list>
-  </form>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
 </div>

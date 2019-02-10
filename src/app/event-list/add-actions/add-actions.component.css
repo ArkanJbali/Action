@@ -43,3 +43,7 @@ mat-radio-group {
   display: inline;
 }
 
+ng-template{
+  color: white;
+  background-color: green;
+}

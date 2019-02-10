@@ -3,16 +3,20 @@ import { EventsService } from './../../Service/events.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventsInstance, NewAction } from './../../Model/EventsList.model';
 import { AddActionComponent } from './../../add-action/add-action.component';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatStepper } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { AddActionService } from 'src/app/Service/add-action.service';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 @Component({
   selector: 'app-add-actions',
   templateUrl: './add-actions.component.html',
-  styleUrls: ['./add-actions.component.css']
+  styleUrls: ['./add-actions.component.css'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
+  }]
 })
 
 export class AddActionsComponent implements OnInit {
@@ -21,6 +25,8 @@ export class AddActionsComponent implements OnInit {
   public ev;
   public error;
   public success;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   app = new FormControl('');
   appsControl = new FormControl('', [Validators.required]);
   selectFormControl = new FormControl('', Validators.required);
@@ -28,9 +34,17 @@ export class AddActionsComponent implements OnInit {
     public dialogRef: MatDialogRef<AddActionComponent>,
     private http: HttpClient,
     public eventServ: EventsService,
-    private NotifServ: NotificationsService
+    private NotifServ: NotificationsService,
+    private _formBuilder: FormBuilder
     ) { }
   ngOnInit() {
+    this.firstFormGroup = this.addService.form ;
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
     this.addService.getApp().subscribe(data => {
     if (!data) {
       return;
@@ -91,5 +105,11 @@ onClose() {
     this.addService.initializeFormGroup();
     this.dialogRef.close();
 }
+goBack(stepper: MatStepper) {
+  stepper.previous();
+}
 
+goForward(stepper: MatStepper) {
+  stepper.next();
+}
 }

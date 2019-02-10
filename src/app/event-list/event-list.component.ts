@@ -34,6 +34,7 @@ eventsAct: NewAction[];
 _Critical: String = 'Critical';
 _Warning: String = 'Warning';
 _Error: String = 'Error';
+havePermission = true;
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
     private newAction: AddActionService,
