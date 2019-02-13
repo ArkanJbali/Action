@@ -1,0 +1,14 @@
+
+  <h5 class="text-center">Action by App</h5>
+  <!-- <button mat-icon-button>fffff</button> -->
+  <div style="display: block">
+  <canvas baseChart *ngIf="okk"
+    [data]="pieChartData"
+    [labels]="pieChartLabels"
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+<br><br>

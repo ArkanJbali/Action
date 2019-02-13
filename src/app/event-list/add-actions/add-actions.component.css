@@ -42,8 +42,6 @@ mat-form-field.mat-hint{
 mat-radio-group {
   display: inline;
 }
-
-ng-template{
-  color: white;
-  background-color: green;
+mat-hint span{
+  color: #FF69B4;
 }

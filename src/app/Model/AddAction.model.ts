@@ -14,4 +14,6 @@ export interface NewAction {
   eventSeverity: string;
   actionName: string;
   description: string;
+  userName: string;
+  msg: string;
 }

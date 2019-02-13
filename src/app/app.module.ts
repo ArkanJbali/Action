@@ -1,3 +1,5 @@
+import { ChartsModule } from 'ng2-charts';
+import { PieComponent } from './charts/pie/pie.component';
 import { AddActionService } from './Service/add-action.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -34,12 +36,14 @@ import { MiddleTableComponent } from './home-page/middle-table/middle-table.comp
     LeftTableComponent,
     RightTableComponent,
     MiddleTableComponent,
+    PieComponent
     // NgbdModalConfig
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
+    ChartsModule,
     MatToolbarModule,
     HttpClientModule,
     AppRoutingModule,

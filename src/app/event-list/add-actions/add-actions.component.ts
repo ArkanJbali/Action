@@ -42,9 +42,11 @@ export class AddActionsComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
+    // this.secondFormGroup = this.addService.form ;
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+
     this.addService.getApp().subscribe(data => {
     if (!data) {
       return;
@@ -90,7 +92,7 @@ onSubmit(newEvent) {
         // console.log(this.ev + '\n' + this.success);
         console.log('Updatess', this.success);
           this.onClose();
-           this.refresh();
+        //   this.refresh();
       }
       this.NotifServ.success(': : Submitted successfully');
       this.addService.form.reset();

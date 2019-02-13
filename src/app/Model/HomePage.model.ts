@@ -13,9 +13,10 @@ export interface ActionLog {
   solution: string ;
 }
 export interface ActionsByApp {
-  AppName: string ;
-  ActionNum: string ;
-  Def: string ;
+  appName: string ;
+appType: string;
+appCount: number ;
+percentage: string ;
 }
 export interface ActionsBySeverity {
   Severity: string ;

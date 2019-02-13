@@ -20,6 +20,8 @@ export interface EventsInstance {
   eventSeverity: string;
   actionName: string;
   description: string;
+  userName: string;
+  msg: string;
 }
 // export interface EventsInstance {
 //   id: number;

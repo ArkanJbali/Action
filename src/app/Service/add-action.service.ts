@@ -22,13 +22,15 @@ export class AddActionService {
     percent: new FormControl(''),
     eventSeverity: new FormControl(''),
     actionName: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
+    userName: new FormControl(''),
+    msg: new FormControl('')
   });
-private _posturl = 'https://loggitor-be.herokuapp.com/apps';
-private _actions = 'https://loggitor-be.herokuapp.com/actionsName';
+private _posturl = 'https://loggitor-be-test.herokuapp.com/apps';
+private _actions = 'https://loggitor-be-test.herokuapp.com/actionsName';
 private serviceUrl = './assets/users.json';
-private _posturl2 = 'https://loggitor-be.herokuapp.com/addEvent';
-private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
+private _posturl2 = 'https://loggitor-be-test.herokuapp.com/addEvent';
+private _UpdateURL = 'https://loggitor-be-test.herokuapp.com/updateEvent';
 getApp(): Observable<Apps[]> {
    return this.http.get<Apps[]>(this._posturl);
  }
@@ -72,7 +74,9 @@ addActions(action): Observable<NewAction> {
     percent: '',
     eventSeverity: '',
     actionName: '',
-    description: ''
+    description: '',
+    userName: '',
+    msg: ''
    });
  }
  populateForm(action) {
@@ -86,7 +90,9 @@ addActions(action): Observable<NewAction> {
     percent: action.percent,
     eventSeverity: action.eventSeverity,
     actionName: action.actionName,
-    description: action.description
+    description: action.description,
+    userName: action.userName,
+    msg: action.msg
    });
  }
  deleteAction($key: string) {

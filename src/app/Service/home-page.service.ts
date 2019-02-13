@@ -9,8 +9,8 @@ import {Observable} from 'rxjs';
 export class HomePageService {
   constructor(private http: HttpClient) { }
   private _posturl = 'https://loggitor-be.herokuapp.com/getAllEventInsTable/2';
-  private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/1/0/0';
-  private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity/1/1/1';
+  private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/1/2/1';
+  private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity/1/1/-1';
    getPosts(): Observable<EventsInstance[]> {
      return this.http.get<EventsInstance[]>(this._posturl);
    }

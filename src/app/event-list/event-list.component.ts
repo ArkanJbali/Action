@@ -26,14 +26,16 @@ public events;
 private _page = 1;
 private selectedNum = 5;
 
-eventsAct2: EventsInstance[];
-@Input() eventss2: EventsInstance;
+eventsAct2: NewAction[];
+@Input() eventss2: NewAction;
 
 eventsAct: NewAction[];
 @Input() eventss: NewAction;
 _Critical: String = 'Critical';
 _Warning: String = 'Warning';
 _Error: String = 'Error';
+
+// Disable option -----------------------------------------------------------
 havePermission = true;
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
@@ -87,7 +89,7 @@ havePermission = true;
       if ( res === true) {
        // this.eventsAct = this.eventsAct.filter(h => h !== action);
         this.eventService.deleteAction(action).subscribe();
-        this.refresh();
+       // this.refresh();
         console.log('deleted\n' + action);
        this.NotifServ.warn('! Deleted successfully');
       } else {
@@ -156,7 +158,7 @@ havePermission = true;
   }
   selectChangeHandler (event: any) {
     this.selectedNum = event.target.value;
-    console.log('hello' + this.selectedNum);
+    // console.log('hello' + this.selectedNum);
     this.getEvents2();
     this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
       if (!data) {
@@ -166,7 +168,7 @@ havePermission = true;
       this.events = new MatTableDataSource(data);
       this.events.sort = this.sort;
       this.events.paginator = this.paginator;
-      console.log('hello');
+    //  console.log('hello');
     });
   }
 }

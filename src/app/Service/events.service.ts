@@ -12,20 +12,20 @@ const httpOptions: { headers: HttpHeaders } = {
 export class EventsService {
   [x: string]: any;
 
-  private _posturl = 'https://loggitor-be.herokuapp.com/events';
-  private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents';
+  private _posturl = 'http://loggitor-be-test.herokuapp.com/viewEvents';
+  private _posturl2 = 'https://loggitor-be-test.herokuapp.com/viewEvents';
   private _page = 1;
   private _items = 10;
   private _posturlnew  = this._posturl2 + '/' + this._page + '/' +  this._items ;
-  private _posturl22 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
-  private _DeleteURL = 'https://loggitor-be.herokuapp.com/deleteEvent';
-  private checkkkk = 'https://loggitor-be.herokuapp.com//viewEvents/1/100';
-  private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
+  private _posturl22 = 'https://loggitor-be-test.herokuapp.com/viewEvents/1/100';
+  private _DeleteURL = 'https://loggitor-be-test.herokuapp.com/deleteEvent';
+  private checkkkk = 'https://loggitor-be-test.herokuapp.com//viewEvents/1/100';
+  private _UpdateURL = 'https://loggitor-be-test.herokuapp.com/updateEvent';
 
   constructor(private http: HttpClient) {
    }
-  getPosts(_page: number , _items: number): Observable<EventsInstance[]> {
-     return this.http.get<EventsInstance[]>(this._posturl2 + '/' + _page + '/' + _items);
+  getPosts(_page: number , _items: number): Observable<NewAction[]> {
+     return this.http.get<NewAction[]>(this._posturl + '/' + _page + '/' + _items);
   }
 /*    getItems(page: number) {
      return this.http.get.get<EventsInstance[]>(this._posturlnew + '/' + page);
