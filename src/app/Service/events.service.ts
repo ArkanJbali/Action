@@ -12,7 +12,7 @@ const httpOptions: { headers: HttpHeaders } = {
 export class EventsService {
   [x: string]: any;
 
-  private _posturl = 'http://loggitor-be-test.herokuapp.com/viewEvents';
+  private _posturl = 'https://loggitor-be-test.herokuapp.com/viewEvents';
   private _posturl2 = 'https://loggitor-be-test.herokuapp.com/viewEvents';
   private _page = 1;
   private _items = 10;
