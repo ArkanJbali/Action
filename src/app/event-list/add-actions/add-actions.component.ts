@@ -22,9 +22,11 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 export class AddActionsComponent implements OnInit {
   public application;
   public actions;
+  public emails;
   public ev;
   public error;
   public success;
+  formGroup: FormGroup;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   app = new FormControl('');
@@ -38,15 +40,26 @@ export class AddActionsComponent implements OnInit {
     private _formBuilder: FormBuilder
     ) { }
   ngOnInit() {
+    this.formGroup = this._formBuilder.group({
+      formArray: this._formBuilder.array([
+        this.firstFormGroup = this.addService.form,
+        this.secondFormGroup = this.addService.form2 ,
+      ])
+    });
     this.firstFormGroup = this.addService.form ;
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
-    // this.secondFormGroup = this.addService.form ;
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-
+      this.secondFormGroup = this.addService.form ;
+    // this.secondFormGroup = this._formBuilder.group({
+    //   secondCtrl: ['', Validators.required]
+    // });
+this.addService.getEmail().subscribe(data => {
+if (!data) {
+  return;
+}
+this.emails = data;
+});
     this.addService.getApp().subscribe(data => {
     if (!data) {
       return;
@@ -70,6 +83,7 @@ onSubmit(newEvent) {
   this.error = '';
   this.success = '';
   console.log('you submitted value:', newEvent, '\n', this.addService.form.value);
+  // console.log('you submitted value:', newUser, '\n', this.addService.form2.value);
   if (this.addService.form.valid) {
     if (!this.addService.form.get('id').value) {
     this.addService.addActions(this.addService.form.value)
@@ -84,7 +98,7 @@ onSubmit(newEvent) {
             console.log('POST call successful value returned in body',
                         val);
         });
-        this.refresh();
+        // this.refresh();
       } else {
         this.addService.updateAction(this.addService.form.value).subscribe((val) => {
           console.log('Put call successful value returned in body',
@@ -92,7 +106,7 @@ onSubmit(newEvent) {
         // console.log(this.ev + '\n' + this.success);
         console.log('Updatess', this.success);
           this.onClose();
-        //   this.refresh();
+         // this.refresh();
       }
       this.NotifServ.success(': : Submitted successfully');
       this.addService.form.reset();

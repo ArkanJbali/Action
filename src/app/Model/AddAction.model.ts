@@ -4,6 +4,9 @@ export interface Apps {
 export interface Actions {
   name: string;
 }
+export interface Emails {
+  email: string;
+}
 export interface NewAction {
   id: number;
   eventName: string;

@@ -1,5 +1,5 @@
 import { EventsInstance, NewAction } from './../Model/EventsList.model';
-import { Apps , Actions} from './../Model/AddAction.model';
+import { Apps, Actions, Emails } from './../Model/AddAction.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -26,24 +26,31 @@ export class AddActionService {
     userName: new FormControl(''),
     msg: new FormControl('')
   });
+  form2: FormGroup = new FormGroup({
+    userName: new FormControl('', Validators.required),
+    msg: new FormControl('')
+  });
 private _posturl = 'https://loggitor-be-test.herokuapp.com/apps';
 private _actions = 'https://loggitor-be-test.herokuapp.com/actionsName';
 private serviceUrl = './assets/users.json';
 private _posturl2 = 'https://loggitor-be-test.herokuapp.com/addEvent';
 private _UpdateURL = 'https://loggitor-be-test.herokuapp.com/updateEvent';
+private _EmailsURL = 'https://adminfinal5.herokuapp.com/emails';
 getApp(): Observable<Apps[]> {
    return this.http.get<Apps[]>(this._posturl);
  }
  getAction(): Observable<Actions[]> {
   return this.http.get<Actions[]>(this._actions);
 }
-
+getEmail(): Observable<Emails[]> {
+  return this.http.get<Emails[]>(this._EmailsURL);
+}
 store(events: EventsInstance) {
   return this.http.post(this._posturl2, events, this.httpOptions);
 }
 updateAction (action): Observable<NewAction> {
     // const url = `${this._UpdateURL}/${action.$id}`;
-    console.log('checked id', action.$id, '\n');
+    console.log('checked id', action.id, '\n');
     // alert(action.$id);
   return this.http.put<NewAction>(this._UpdateURL, action, this.httpOptions)
   .pipe(
@@ -79,6 +86,12 @@ addActions(action): Observable<NewAction> {
     msg: ''
    });
  }
+ initializeFormGroup2() {
+  this.form2.setValue({
+   userName: '',
+   msg: ''
+  });
+}
  populateForm(action) {
   console.log(action.id);
    this.form.setValue({
@@ -91,6 +104,13 @@ addActions(action): Observable<NewAction> {
     eventSeverity: action.eventSeverity,
     actionName: action.actionName,
     description: action.description,
+    userName: action.userName,
+    msg: action.msg
+   });
+ }
+ populateForm2(action) {
+  console.log(action.id);
+   this.form.setValue({
     userName: action.userName,
     msg: action.msg
    });

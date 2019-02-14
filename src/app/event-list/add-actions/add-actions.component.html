@@ -6,9 +6,11 @@
       <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
 </div>
+<form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white" >
 <mat-horizontal-stepper linear #stepper class=" normal-form p-3 mb-2 bg-dark text-white">
-  <mat-step [stepControl]="addService.form" errorMessage="Action is required.">
-    <form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white" >
+
+  <mat-step [stepControl]="addService.form.valid" errorMessage="Action is required.">
+
       <ng-template matStepLabel><span style=" color: white;">Fill out new action</span></ng-template>
       <mat-grid-list cols="2" rowHeight="1:1">
         <mat-grid-tile>
@@ -66,7 +68,7 @@
   <mat-grid-tile>
       <div class="controlers-container">
       <div class="form-group">
-          <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Action Defntion</label><br>
+          <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Action Defintion</label><br>
           <mat-form-field>
               <select matNativeControl formControlName="eventSeverity">
               <option label="--select action severity --"></option>
@@ -101,28 +103,23 @@
   </mat-grid-tile>
       </mat-grid-list>
       <div>
-
       </div>
-    </form>
-
-
-
+    <!-- </form> -->
   </mat-step>
-  <mat-step [stepControl]="addService.form" errorMessage="User information is required.">
-    <form [formGroup]="addService.form">
+  <mat-step  [stepControl]="addService.form.valid" errorMessage="User information is required.">
+    <!-- <form [formGroup]="addService.form" class=" normal-form p-3 mb-2 bg-dark text-white"> -->
       <ng-template matStepLabel><span style=" color: white;">Fill out user information</span></ng-template>
           <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Choose an user :</label><br>
-      <mat-form-field>
-        <select matNativeControl  formControlName="userName">
-          <option label="--select User --"></option>
-          <option label="loggitor.action.system@gmail.com" value="loggitor.action.system@gmail.com"></option>
-          <option label="Mhmd" value="Mhmd"></option>
-          <option label="Mhmood" value="Mhmood"></option>
-          </select>
+      <mat-form-field style="width: 40%">
+          <select matNativeControl  formControlName="userName">
+              <option label="--select action --"></option>
+              <option label="loggitor.action.system@gmail.com" value="loggitor.action.system@gmail.com"></option>
+              <option *ngFor="let em of emails" [ngValue]="emails.email" value="{{em.email}}"> {{em.email}}  </option>
+              </select>
           <mat-hint><span>You can pick up an user</span></mat-hint>
       </mat-form-field>
    <br><br>
-      <mat-form-field>
+      <mat-form-field style="width: 40%;">
         <label style="margin:5px;"> Write a message to send : </label>
         <textarea matInput formControlName="msg" required></textarea>
       </mat-form-field>
@@ -131,8 +128,10 @@
         <button mat-button matStepperPrevious class="btn btn-outline-primary">Back</button>
         <button mat-button matStepperNext class="btn btn-outline-primary">Next</button>
       </div>
-    </form>
+    <!-- </form> -->
+
   </mat-step>
+
   <mat-step>
     <ng-template matStepLabel><span style=" color: white;">Done</span></ng-template>
     You are now done.<br>
@@ -140,12 +139,12 @@
     <div><br><br>
       <button mat-button matStepperPrevious class="btn btn-outline-primary">Back</button>
       <!-- <button mat-raised-button >Clear</button> -->
-      <button mat-raised-button (click)="stepper.reset();onClear();" color="warn">Reset</button>
       <button mat-raised-button color="primary"
       type="submit" [disabled]="addService.form.invalid" (click)="onSubmit(addService.form.value)">Save</button>
+      <button mat-raised-button (click)="stepper.reset();onClear();" color="warn">Reset</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
 
-
+</form>
 </div>

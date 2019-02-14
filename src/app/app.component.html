@@ -16,10 +16,12 @@
 </mat-sidenav>
 </div>
 
-<div class="ul">
-
-  <div class="btn-group" dropdown align="center">
-      <button type="button" class="btn " style="padding: 12px 16px;" routerLink="home"> Home</button>
+<div class="ul" id="main2">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <i class="material-icons">
+      <button mat-button (click)="sidenav.open();openNav();"><mat-icon>menu</mat-icon></button>
+ </i>
+      <!-- <button type="button" class="btn " style="padding: 12px 16px;" routerLink="home"> Home</button> -->
       <!-- <button id="button-split" type="button" dropdownToggle class="btn btn-dark dropdown-toggle dropdown-toggle-split"
               aria-controls="dropdown-split">
         <span class="caret"></span>
@@ -37,29 +39,27 @@
       </ul> -->
     </div>
 
-    <span><button class="btn" href="#Rules">Rules</button></span>
-    <span><button class="btn" href="#Solution">Solutions</button></span>
+    <span><button class="btn" (click)="LoggitorURL();">Loggitor</button></span>
+    <span><button class="btn" (click)="ActionURL();">Action</button></span>
+    <span><button class="btn"(click)="AdminURL();">Admin</button></span>
     <span><button class="btn" href="#About">About</button></span>
-    <li style="float: right"><img src="./assets/a.png" alt="Amdocs Logo" height="45"></li>
+    <li style="float: right"><img src="./assets/a.png" alt="Amdocs Logo" height="35px"></li>
 </div><br>
 
 
   <br>
-  <div class="container" id="main" >
-    <div class="container" align="right">
-        <i class="material-icons">
-            <button mat-button (click)="sidenav.open();openNav();"><mat-icon style="font-size:25px;">menu</mat-icon></button>
-              </i>
-    </div>
+  <div class="container"  id="main">
+
 
     <div class="container">
 
            <H2 align="center">Log Action System Status at  <span>{{jstoday}}</span></H2>
            <br><br>
+           <router-outlet></router-outlet>
     </div>
 
 
-<router-outlet></router-outlet>
+
 
 
 </div>

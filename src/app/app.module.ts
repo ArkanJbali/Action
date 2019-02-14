@@ -24,6 +24,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { LeftTableComponent } from './home-page/left-table/left-table.component';
 import { RightTableComponent } from './home-page/right-table/right-table.component';
 import { MiddleTableComponent } from './home-page/middle-table/middle-table.component';
+import { BarComponent } from './charts/bar/bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { MiddleTableComponent } from './home-page/middle-table/middle-table.comp
     LeftTableComponent,
     RightTableComponent,
     MiddleTableComponent,
-    PieComponent
+    PieComponent,
+    BarComponent
     // NgbdModalConfig
   ],
   imports: [

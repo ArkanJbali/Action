@@ -13,7 +13,7 @@ export class MiddleTableComponent implements OnInit {
   ActionLogData;
   byAppData;
   bySevData;
-  _Critical: String = 'critical';
+  _Critical: String = 'Critical';
   _Warning: String = 'Warning';
   _Error: String = 'Error';
   constructor(private homeService: HomePageService) { }

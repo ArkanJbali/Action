@@ -66,6 +66,7 @@ havePermission = true;
 
   OnAdd() {
     this.newAction.initializeFormGroup();
+    this.newAction.initializeFormGroup2();
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
@@ -76,6 +77,7 @@ havePermission = true;
    onEdit(row) {
     console.log(row, '\n onEdit');
       this.newAction.populateForm(row);
+     // this.newAction.populateForm2(row);
       const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
@@ -90,7 +92,7 @@ havePermission = true;
        // this.eventsAct = this.eventsAct.filter(h => h !== action);
         this.eventService.deleteAction(action).subscribe();
        // this.refresh();
-        console.log('deleted\n' + action);
+        console.log('deleted\n' + action.id);
        this.NotifServ.warn('! Deleted successfully');
       } else {
         console.log('not deleted');

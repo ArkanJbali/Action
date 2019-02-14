@@ -49,7 +49,7 @@ export class EventsService {
 //     );
 
     const url = `${this._DeleteURL}/${id}`;
-    console.log('done' + action);
+    console.log('done' + action + url);
     return this.http.delete<NewAction>(url, httpOptions);
     // .pipe(
     //   tap(_ => this.log(`deleted action id=${id}`)),
