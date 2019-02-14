@@ -23,3 +23,9 @@ export interface ActionsBySeverity {
   SevNum: string ;
   Def: string ;
 }
+export interface SevChart {
+  name: string;
+  cri: number;
+  war: number;
+  err: number;
+}

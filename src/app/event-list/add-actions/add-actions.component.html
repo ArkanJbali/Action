@@ -12,12 +12,12 @@
   <mat-step [stepControl]="addService.form.valid" errorMessage="Action is required.">
 
       <ng-template matStepLabel><span style=" color: white;">Fill out new action</span></ng-template>
-      <mat-grid-list cols="2" rowHeight="1:1">
+      <mat-grid-list cols="2" rowHeight="1:2">
         <mat-grid-tile>
           <div class="controlers-container">
+              <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Event Defintion</label><br>
               <input type="hidden" formControlName="id">
               <mat-form-field>
-
                   <label style="margin:5px;" class="font-weight-bold"> Event Title: </label>
                   <input  formControlName="eventName" matInput >
                   <mat-error *ngIf="addService.form.controls['eventName'].errors?.minlength">title is required.</mat-error>

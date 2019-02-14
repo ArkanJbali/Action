@@ -85,7 +85,12 @@ i{
     li {
       float: left;
     }
-
+button span{
+  font-family: 'Righteous', cursive;
+  font-weight: normal;
+  color: white;
+  text-shadow: 1px 1px 0 black;
+}
 
     mat-cell {
       color: white;

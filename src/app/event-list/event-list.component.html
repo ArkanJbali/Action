@@ -9,14 +9,13 @@
             <button class="btn btn-dark" mat-raised-button (click)="OnAdd()"><mat-icon>add</mat-icon>New</button>
           </div>
           </div>
-
-      <div class="container">
+<br>
 
    <mat-card class="text-white bg-dark">
         <div>
             <strong style="font-size: 20px;">Actions Log</strong>
         </div>
-    <div align="center">
+
         <mat-table #table [dataSource]="events" matSort class='table text-white bg-dark'>
         <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef  mat-sort-header>Id</mat-header-cell>
@@ -94,21 +93,21 @@
      <!-- <mat-paginator #paginator class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]">
       </mat-paginator>-->
       <div class="page col-8 text-white bg-dark">
-        <button class="btn btn-dark" mat-raised-button (click)="onFirsts()"><mat-icon>skip_previous</mat-icon></button>
-        <button class="btn btn-dark" mat-raised-button (click)="onPrevious()"><mat-icon>arrow_back_ios</mat-icon>Previous</button>
-        <button class="btn btn-dark" mat-raised-button (click)="onNext()">Next<mat-icon>arrow_forward_ios</mat-icon></button>
+        <button class="btn btn-dark" mat-raised-button (click)="onFirsts()"><mat-icon >skip_previous</mat-icon></button>
+        <button class="btn btn-dark" mat-raised-button (click)="onPrevious()"><mat-icon>arrow_back_ios</mat-icon><span style="font-size:10px;">Previous</span></button>
+        <button class="btn btn-dark" mat-raised-button (click)="onNext()"><span style="font-size:10px;">Next</span><mat-icon>arrow_forward_ios</mat-icon></button>
         <button class="btn btn-dark" mat-raised-button><mat-icon>skip_next</mat-icon></button>
-        <label style="margin:15px;">
+        <label style="margin:15px;font-size:10px;">
           Events per page:
           </label>
-          <select (change)="selectChangeHandler($event)" id="pagination" name="pagination" value=20 style="width:15%">
+          <select (change)="selectChangeHandler($event)" id="pagination" name="pagination" value=20 style="width:12%">
               <option value=5>5</option>
               <option value=10>10</option>
               <option value=15>15</option>
               <option value=20>20</option>
             </select>
           </div>
-    </div>
+
 
   </mat-card>
 

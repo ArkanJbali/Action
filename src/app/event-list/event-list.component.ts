@@ -37,6 +37,7 @@ _Error: String = 'Error';
 
 // Disable option -----------------------------------------------------------
 havePermission = true;
+f = false;
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
     private newAction: AddActionService,
@@ -88,15 +89,17 @@ havePermission = true;
    onDelete(action: NewAction): void {
      this.dialogService.openConfirmDialog('Are your sure to delete this record?').afterClosed().subscribe(
        res => {
-      if ( res === true) {
+      if ( res ) {
        // this.eventsAct = this.eventsAct.filter(h => h !== action);
-        this.eventService.deleteAction(action).subscribe();
-       // this.refresh();
+        this.eventService.deleteAction(action).subscribe(() => {
+          this.refresh(); });
         console.log('deleted\n' + action.id);
        this.NotifServ.warn('! Deleted successfully');
+       this.f = true;
       } else {
         console.log('not deleted');
-      }}
+      }
+    }
      );
    }
    goBack(): void {
