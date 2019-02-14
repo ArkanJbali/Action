@@ -11,7 +11,7 @@ export class HomePageService {
   private _posturl = 'https://loggitor-be-test.herokuapp.com/getAllEventInsTable/2019-02-12';
   private _ByAppURL = 'https://loggitor-be-test.herokuapp.com/actionsbyapp/2019-02-12/0/0';
   private _BySevURL = 'https://loggitor-be-test.herokuapp.com/actionsbyseverity/2019-02-12/0/0';
-  private _SevChart = 'http://loggitor-be-test.herokuapp.com/getDailyChart/2019-02-12/0/0';
+  private _SevChart = 'https://loggitor-be-test.herokuapp.com/getDailyChart/2019-02-12/0/0';
    getPosts(): Observable<EventsInstance[]> {
      return this.http.get<EventsInstance[]>(this._posturl);
    }
