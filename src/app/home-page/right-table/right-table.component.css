@@ -45,4 +45,18 @@ mat-footer-row mat-footer-cell{
   MatDialog{
     background: black;
   }
+  .page{
+    float: left;
+    color: white;
+  }
+  .page button{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: white;
+
+  }
 

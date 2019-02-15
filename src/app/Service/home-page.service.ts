@@ -8,16 +8,27 @@ import {Observable} from 'rxjs';
 })
 export class HomePageService {
   constructor(private http: HttpClient) { }
-  private _posturl = 'https://loggitor-be-test.herokuapp.com/getAllEventInsTable/2019-02-12';
+  private _posturl = 'https://loggitor-be-test.herokuapp.com/getEventInsTable/2019-02-12';
+  private _getAllEventsCounter = 'https://loggitor-be-test.herokuapp.com/countEventIns';
   private _ByAppURL = 'https://loggitor-be-test.herokuapp.com/actionsbyapp/2019-02-12/0/0';
+  private _ByAppURLnew = 'https://loggitor-be-test.herokuapp.com/actionsbyapp/2019-02-12/';
   private _BySevURL = 'https://loggitor-be-test.herokuapp.com/actionsbyseverity/2019-02-12/0/0';
   private _SevChart = 'https://loggitor-be-test.herokuapp.com/getDailyChart/2019-02-12/0/0';
-   getPosts(): Observable<EventsInstance[]> {
-     return this.http.get<EventsInstance[]>(this._posturl);
-   }
-   getApp(): Observable<ActionsByApp[]> {
-    return this.http.get<ActionsByApp[]>(this._ByAppURL);
+  getEventInsCounter(): Observable<ActionsByApp[]> {
+    return this.http.get<ActionsByApp[]>(this._getAllEventsCounter);
   }
+  getPostsL(_pageSize: number, _pageNumber: number): Observable<EventsInstance[]> {
+    return this.http.get<EventsInstance[]>(this._posturl + '/' + _pageSize + '/' + _pageNumber);
+  }
+  getAppL(_pageSize: number, _pageNumber: number): Observable<ActionsByApp[]> {
+   return this.http.get<ActionsByApp[]>(this._ByAppURLnew + _pageSize + '/' + _pageNumber);
+  }
+  getPosts(): Observable<EventsInstance[]> {
+    return this.http.get<EventsInstance[]>(this._posturl);
+  }
+  getApp(): Observable<ActionsByApp[]> {
+   return this.http.get<ActionsByApp[]>(this._ByAppURL);
+ }
   getSev(): Observable<ActionsBySeverity[]> {
     return this.http.get<ActionsBySeverity[]>(this._BySevURL);
   }

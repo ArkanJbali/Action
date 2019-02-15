@@ -21,8 +21,12 @@ export class EventsService {
   private _DeleteURL = 'https://loggitor-be-test.herokuapp.com/deleteEvent';
   private checkkkk = 'https://loggitor-be-test.herokuapp.com//viewEvents/1/100';
   private _UpdateURL = 'https://loggitor-be-test.herokuapp.com/updateEvent';
+  private _getAllEventsCounter = 'https://loggitor-be-test.herokuapp.com/countDefinedEvent';
 
   constructor(private http: HttpClient) {
+   }
+   getEventsCounter(): Observable<NewAction[]> {
+    return this.http.get<NewAction[]>(this._getAllEventsCounter);
    }
   getPosts(_page: number , _items: number): Observable<NewAction[]> {
      return this.http.get<NewAction[]>(this._posturl + '/' + _page + '/' + _items);
