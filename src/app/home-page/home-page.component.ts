@@ -6,8 +6,10 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-keyid: any;
+keyid: string;
   constructor(private route: ActivatedRoute) {
+      this.keyid = this.route.snapshot.params.id;
+    console.log(this.keyid, 'route');
    }
 
   ngOnInit() {
@@ -15,8 +17,6 @@ keyid: any;
     //   console.log(params.get['id'], 'dsadasdasd');
     //   this.keyid = params.get['id'];
     // });
-    this.keyid = this.route.snapshot.params.id;
-    console.log(this.keyid, 'route');
 
   }
 }

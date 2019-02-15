@@ -112,7 +112,7 @@
           <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Choose an user :</label><br>
       <mat-form-field style="width: 40%">
           <select matNativeControl  formControlName="userName">
-              <option label="--select action --"></option>
+              <option label="--select Users --"></option>
               <option label="loggitor.action.system@gmail.com" value="loggitor.action.system@gmail.com"></option>
               <option *ngFor="let em of emails" [ngValue]="emails.email" value="{{em.email}}"> {{em.email}}  </option>
               </select>
