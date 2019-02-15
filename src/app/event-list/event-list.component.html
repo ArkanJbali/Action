@@ -92,11 +92,11 @@
 
      <!-- <mat-paginator #paginator class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]">
       </mat-paginator>-->
-      <div class="page col-8 text-white bg-dark">
+      <div class="page col-7 text-white bg-dark">
         <button class="btn btn-dark" mat-raised-button (click)="onFirsts()"><mat-icon >skip_previous</mat-icon></button>
         <button class="btn btn-dark" mat-raised-button (click)="onPrevious()"><mat-icon>arrow_back_ios</mat-icon><span style="font-size:10px;">Previous</span></button>
         <button class="btn btn-dark" mat-raised-button (click)="onNext()"><span style="font-size:10px;">Next</span><mat-icon>arrow_forward_ios</mat-icon></button>
-        <button class="btn btn-dark" mat-raised-button><mat-icon>skip_next</mat-icon></button>
+        <button class="btn btn-dark" mat-raised-button (click)="onlast()"><mat-icon>skip_next</mat-icon></button>
         <label style="margin:15px;font-size:10px;">
           Events per page:
           </label>

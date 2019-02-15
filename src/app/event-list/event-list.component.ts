@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
 import { NotificationsService } from '../Service/notifications.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -25,6 +26,7 @@ public events;
 
 private _page = 1;
 private selectedNum = 5;
+private index: number;
 
 eventsAct2: NewAction[];
 @Input() eventss2: NewAction;
@@ -161,11 +163,33 @@ f = false;
 
    });
   }
+
+  onlast(): void {
+    this.eventService.getEventsCounter().subscribe(counter => {
+      if (counter.length === 0) {
+        return;
+      } else {
+         this.index = (+counter - (+counter % this.selectedNum));
+        this.index = (( this.index / this.selectedNum ) + 1 );
+        this._page = this.index;
+        this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
+          if (!data) {
+            return;
+          }
+         // this.events = data;
+          this.events = new MatTableDataSource(data);
+          this.events.sort = this.sort;
+          this.events.paginator = this.paginator;
+        });
+      }
+    });
+  }
+
   selectChangeHandler (event: any) {
     this.selectedNum = event.target.value;
     // console.log('hello' + this.selectedNum);
     this.getEvents2();
-    this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {
+    this.eventService.getPosts(1 , this.selectedNum).subscribe(data => {
       if (!data) {
         return;
       }
