@@ -10,7 +10,6 @@
 <mat-horizontal-stepper linear #stepper class=" normal-form p-3 mb-2 bg-dark text-white">
 
   <mat-step [stepControl]="addService.form.valid" errorMessage="Action is required.">
-
       <ng-template matStepLabel><span style=" color: white;">Fill out new action</span></ng-template>
       <mat-grid-list cols="2" rowHeight="1:2">
         <mat-grid-tile>
@@ -90,12 +89,13 @@
                 <mat-error *ngIf="addService.form.controls['actionName'].errors?.required">Please choose the action</mat-error>
               </mat-form-field><br>
               <mat-form-field>
-                <label style="margin:5px;" class="font-weight-bold"> Action description / suggested solution: </label>
+                <label style="margin:5px;"> Action description / suggested solution: </label>
                 <textarea matInput formControlName="description"></textarea>
               </mat-form-field>
               </div>
 
       <div class="button-row">
+        <br><br><br><br><br>
           <button mat-button  matStepperNext class="btn btn-outline-primary">Next</button>
           <button mat-raised-button  color="warn"  mat-button mat-dialog-close  type="button">Cancel</button>
         </div>

@@ -72,7 +72,7 @@ f = false;
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '80%';
-    dialogConfig.height = '100%';
+    dialogConfig.height = '95%';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
    onEdit(row) {
@@ -83,7 +83,7 @@ f = false;
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '80%';
-    dialogConfig.height = '100%';
+    dialogConfig.height = '95%';
     this.dialog.open(AddActionsComponent, dialogConfig);
    }
    onDelete(action: NewAction): void {
