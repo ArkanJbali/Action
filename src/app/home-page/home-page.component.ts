@@ -7,13 +7,16 @@ import { Component, OnInit} from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 keyid: any;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {
+   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      console.log(params.get('id'), 'dsadasdasd');
-      this.keyid = params.get('id');
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   console.log(params.get['id'], 'dsadasdasd');
+    //   this.keyid = params.get['id'];
+    // });
+    this.keyid = this.route.snapshot.params.id;
+    console.log(this.keyid, 'route');
 
   }
 }

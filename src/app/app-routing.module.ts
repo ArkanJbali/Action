@@ -8,6 +8,7 @@ const routes: Routes = [
 { path: '', redirectTo: '/home', pathMatch: 'full' },
 { path: 'eventlist', component: EventListComponent },
 { path: 'addAction', component: AddActionComponent },
+{ path: 'home/:id', component: HomePageComponent },
 { path: 'home', component: HomePageComponent }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
