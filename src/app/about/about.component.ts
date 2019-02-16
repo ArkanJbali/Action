@@ -27,6 +27,7 @@ import {
 })
 export class AboutComponent implements OnInit {
   state = 'hide';
+  state2 = 'hide';
   constructor(public el: ElementRef) { }
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
@@ -38,8 +39,14 @@ export class AboutComponent implements OnInit {
     } else {
       this.state = 'hide';
     }
+    if (scrollPosition >= 1800) {
+      this.state2 = 'hide';
+    } else {
+      this.state2 = 'show';
+    }
   }
 
   ngOnInit() {
+    console.log(window.innerHeight);
   }
 }
