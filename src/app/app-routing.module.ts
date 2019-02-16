@@ -1,3 +1,4 @@
+import { AboutComponent } from './about/about.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { AddActionComponent } from './add-action/add-action.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -9,7 +10,8 @@ const routes: Routes = [
 { path: 'eventlist', component: EventListComponent },
 { path: 'addAction', component: AddActionComponent },
 { path: 'home/:id', component: HomePageComponent },
-{ path: 'home', component: HomePageComponent }];
+{ path: 'home', component: HomePageComponent },
+{ path: 'about', component: AboutComponent }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

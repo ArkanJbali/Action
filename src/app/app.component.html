@@ -12,8 +12,8 @@
 <div class="ex " (click)="close();closeNav();" id="mySidenav">
 <mat-sidenav #sidenav  (keydown.escape)="close();closeNav();" disableClose class="text-white bg-dark">
     <a class="btn-dialog-close overlay" mat-stroked-button (click)="close();closeNav();" tabIndex="-1"><mat-icon>clear</mat-icon></a>
- <p> <button type="button" class="btn" style="padding: 12px 16px;" routerLink="home"> Home</button></p>
-<p><button type="button" class="btn" style="padding: 12px 16px;" routerLink="/eventlist"> Event List</button></p>
+ <p> <button type="button" class="btn" style="padding: 12px 16px;" routerLink="home" (click)="refreshHref();"> Home</button></p>
+<p><button type="button" class="btn" style="padding: 12px 16px;" routerLink="/eventlist" (click)="refreshHref();"> Event List</button></p>
 </mat-sidenav>
 </div>
 
@@ -43,7 +43,7 @@
     <span><button class="btn" (click)="LoggitorURL();"><span>Loggitor</span></button></span>
     <span><button class="btn" (click)="ActionURL();"><span>Action</span></button></span>
     <span><button class="btn"(click)="AdminURL();"><span>Admin</span></button></span>
-    <span><button class="btn"><span>About</span></button></span>
+    <span><button class="btn" routerLink="about" (click)="refreshHref();"><span>About</span></button></span>
     <li style="float: right"><img src="./assets/a.png" alt="Amdocs Logo" height="35px"></li>
 </div><br>
 
@@ -52,17 +52,17 @@
   <div class="container"  id="main">
 
 
-    <div class="container">
+    <div class="container"  *ngIf="router != '/about'">
 
            <H2 align="center">Log Action System Status at  <span>{{jstoday}}</span></H2>
            <br><br>
-           <router-outlet></router-outlet>
+
     </div>
 
-
+    <router-outlet></router-outlet>
 
 
 
 </div>
-
-
+<!-- <span style="color: yellow;"  id="contentToConvert">ssssssssssss</span> -->
+<!-- <button (click)="downloadPDF()">Export to PDF</button> -->

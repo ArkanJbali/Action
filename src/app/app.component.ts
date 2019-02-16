@@ -9,10 +9,16 @@ import {MatSidenav} from '@angular/material/sidenav';
 export class AppComponent {
   title = 'action-loggitor';
   today = new Date();
+  router = '';
   jstoday = '';
   @ViewChild('sidenav') sidenav: MatSidenav;
   constructor(@Inject(DOCUMENT) document) {
     this.jstoday = formatDate(this.today, 'dd/MM/yyyy', 'en-US', '+0530');
+    this.router = window.location.pathname;
+    console.log(this.router);
+  }
+  refreshHref() {
+    window.location.reload();
   }
  openNav() {
     document.getElementById('mySidenav').style.width = '100px';

@@ -34,15 +34,15 @@
   </mat-table>
   <!-- <mat-paginator #paginator  class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons>
   </mat-paginator> -->
-  <div class="page col-15 text-white bg-dark">
-    <button class="btn btn-dark" mat-raised-button (click)="onFirsts()"><mat-icon>skip_previous</mat-icon></button>
-    <button class="btn btn-dark" mat-raised-button (click)="onPrevious()"><mat-icon>arrow_back_ios</mat-icon></button>
-    <button class="btn btn-dark" mat-raised-button (click)="onNext()"><mat-icon>arrow_forward_ios</mat-icon></button>
-    <button class="btn btn-dark" mat-raised-button><mat-icon>skip_next</mat-icon></button>
-    <label style="margin:10px;">
-      Number Of Events :
+  <div class="page text-white bg-dark col-9">
+    <mat-icon (click)="onFirsts()">skip_previous</mat-icon>
+   <mat-icon (click)="onPrevious()">arrow_back_ios</mat-icon>
+   <mat-icon (click)="onNext()">arrow_forward_ios</mat-icon>
+    <mat-icon>skip_next</mat-icon>
+    <label style="margin:15px; font-size: 10px;">
+      per page:
       </label>
-      <select (change)="selectChangeHandler($event)" id="pagination" name="pagination" value=20 style="width:10%">
+      <select (change)="selectChangeHandler($event)" id="pagination" name="pagination" value=20 style="width:15%;  font-size: 10px;">
           <option value=5>5</option>
           <option value=10>10</option>
           <option value=15>15</option>

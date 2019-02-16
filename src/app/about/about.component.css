@@ -1,0 +1,31 @@
+#navbar {
+  position: fixed; /* Make it stick/fixed */
+  top: 0; /* Stay on top */
+  padding: 20px;
+  left: 0;
+  margin-left: 20px;
+  width: 100%; /* Full width */
+  transition: top 0.3s; /* Transition effect when sliding down (and up) */
+  z-index: 1;
+}
+.headers{
+  padding:7%;
+}
+.headers h1{
+  font-family: Stencil Std, fantasy;
+  font-size: 60px;
+  border-bottom: 3px solid #FF1493;
+  width: 30%;
+}
+span {
+  text-indent: 40px;
+  text-align: justify;
+  letter-spacing: 2px;
+  font-size: 19px;
+  font-family: Comic Sans MS, cursive, sans-serif;
+}
+mat-card{
+  /* width: 60%; */
+  border: 1px solid;
+  /* border-color:#C76BC0; */
+}
