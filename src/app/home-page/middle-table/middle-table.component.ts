@@ -74,10 +74,9 @@ export class MiddleTableComponent implements OnInit {
   onlast(): void {
     this.homeService.getEventInsCounter().subscribe(counter => {
       if (counter.length === 0) {
-        console.log('hello');
         return;
       } else {
-        console.log(counter);
+        // console.log(counter);
          this.index = (+counter - (+counter % this.selectedNum));
         this.index = (( this.index / this.selectedNum ) + 1 );
         console.log(this.index);

@@ -34,12 +34,12 @@
   </mat-table>
   <!-- <mat-paginator #paginator  class="text-white bg-dark" [pageSize]="5" [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons>
   </mat-paginator> -->
-  <div class="page text-white bg-dark col-9">
+  <div class="page text-white bg-dark col-8">
     <mat-icon (click)="onFirsts()">skip_previous</mat-icon>
    <mat-icon (click)="onPrevious()">arrow_back_ios</mat-icon>
    <mat-icon (click)="onNext()">arrow_forward_ios</mat-icon>
     <mat-icon>skip_next</mat-icon>
-    <label style="margin:15px; font-size: 10px;">
+    <label style="margin:15px; font-size: 12px;">
       per page:
       </label>
       <select (change)="selectChangeHandler($event)" id="pagination" name="pagination" value=20 style="width:15%;  font-size: 10px;">

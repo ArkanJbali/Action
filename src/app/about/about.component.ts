@@ -39,14 +39,15 @@ export class AboutComponent implements OnInit {
     } else {
       this.state = 'hide';
     }
-    if (scrollPosition >= 1800) {
+    if (scrollPosition >= 2300) {
       this.state2 = 'hide';
     } else {
       this.state2 = 'show';
     }
+    console.log(componentPosition);
+    console.log(document.documentElement.scrollHeight);
   }
 
   ngOnInit() {
-    console.log(window.innerHeight);
   }
 }

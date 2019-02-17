@@ -13,7 +13,7 @@
       <ng-template matStepLabel><span style=" color: white;">Fill out new action</span></ng-template>
       <mat-grid-list cols="2" rowHeight="1:2">
         <mat-grid-tile>
-          <div class="controlers-container">
+          <div class="container">
               <label class="font-weight-bold" style="font-size: 20px;text-decoration: underline;">Event Defintion</label><br>
               <input type="hidden" formControlName="id">
               <mat-form-field>
@@ -36,8 +36,9 @@
                 <select matNativeControl  formControlName="defSeverity">
                 <option label="--select defect Severity --"></option>
                 <option label="Critical" value="Critical"></option>
-                <option label="Warning" value="Warning"></option>
                 <option label="Error" value="Error"></option>
+                <option label="Warning" value="Warning"></option>
+
                 </select>
                 <mat-hint><span>You can pick up an defect severity</span></mat-hint>
                 <!-- <mat-error *ngIf="addService.form.controls['defSeverity'].errors?.required">Please choose the defect severity</mat-error> -->
@@ -72,8 +73,9 @@
               <select matNativeControl formControlName="eventSeverity">
               <option label="--select action severity --"></option>
               <option label="Critical" value="Critical"></option>
-              <option label="Warning" value="Warning"></option>
               <option label="Error" value="Error"></option>
+              <option label="Warning" value="Warning"></option>
+
               </select>
               <mat-hint><span>You can pick up an action severity</span></mat-hint>
               <mat-error *ngIf="addService.form.controls['eventSeverity'].errors?.required">Please choose the action severity</mat-error>
@@ -97,7 +99,7 @@
       <div class="button-row">
         <br><br><br><br><br>
           <button mat-button  matStepperNext class="btn btn-outline-primary">Next</button>
-          <button mat-raised-button  color="warn"  mat-button mat-dialog-close  type="button">Cancel</button>
+          <button mat-button class="btn btn-outline-danger"   mat-dialog-close>Cancel</button>
         </div>
       </div>
   </mat-grid-tile>
@@ -137,11 +139,16 @@
     You are now done.<br>
     Thank You.
     <div><br><br>
-      <button mat-button matStepperPrevious class="btn btn-outline-primary">Back</button>
-      <!-- <button mat-raised-button >Clear</button> -->
-      <button mat-raised-button color="primary"
-      type="submit" [disabled]="addService.form.invalid" (click)="onSubmit(addService.form.value)">Save</button>
-      <button mat-raised-button (click)="stepper.reset();onClear();" color="warn">Reset</button>
+      <div class="button-row">
+        <br><br><br><br><br>
+        <button mat-button matStepperPrevious class="btn btn-outline-primary">Back</button>
+        <!-- <button mat-raised-button >Clear</button> -->
+        <button mat-raised-button color="primary"
+        type="submit" [disabled]="addService.form.invalid" (click)="onSubmit(addService.form.value)">Save</button>
+        <button mat-raised-button (click)="stepper.reset();onClear();" color="warn">Reset</button>
+        </div>
+
+
     </div>
   </mat-step>
 </mat-horizontal-stepper>

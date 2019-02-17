@@ -57,5 +57,13 @@ mat-footer-row mat-footer-cell{
     overflow: hidden;
     outline:none;
     color: white;
+    padding: 5px 5px;
+    font-size: 10px;
+    border-radius: 5px;
+  }
+  .page mat-icon{
+    font-size: 25px;
+    cursor: pointer;
+    padding: 15px 15px;
   }
 
