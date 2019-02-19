@@ -1,3 +1,4 @@
+import { Idclass } from './../Model/IDClass.model';
 import { AlertService } from './../Service/alert.service';
 import { AddActionService } from 'src/app/Service/add-action.service';
 import { EventsService } from './../Service/events.service';
@@ -40,14 +41,22 @@ _Error: String = 'Error';
 // Disable option -----------------------------------------------------------
 havePermission = true;
 f = false;
+keyid: string;
+d: Idclass;
   constructor(private eventService: EventsService,
     private dialog: MatDialog,
     private newAction: AddActionService,
     private route: Router,
     private location: Location,
     private dialogService: AlertService,
-    private NotifServ: NotificationsService
-    ) { }
+    private NotifServ: NotificationsService,
+    private routess: ActivatedRoute
+    ) {
+      this.keyid = this.routess.snapshot.params.id;
+      console.log(this.keyid, 'route');
+      this.routess.params.subscribe( params => console.log('params', params) );
+      this.d = new Idclass(this.routess);
+    }
   ngOnInit() {
    // this.eventService.getPosts().subscribe(data => this.events = data);
    this.eventService.getPosts(this._page , this.selectedNum).subscribe(data => {

@@ -1,6 +1,7 @@
-import { Component, ViewChild, Inject } from '@angular/core';
+import { Component, ViewChild, Inject, Input } from '@angular/core';
 import {formatDate, DOCUMENT } from '@angular/common';
 import {MatSidenav} from '@angular/material/sidenav';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,11 +12,22 @@ export class AppComponent {
   today = new Date();
   router = '';
   jstoday = '';
+  keyid: string;
+ eventID: string;
   @ViewChild('sidenav') sidenav: MatSidenav;
-  constructor(@Inject(DOCUMENT) document) {
+  @Input() childMessage: string;
+  constructor(@Inject(DOCUMENT) document,
+  private routess: ActivatedRoute) {
     this.jstoday = formatDate(this.today, 'dd/MM/yyyy', 'en-US', '+0530');
     this.router = window.location.pathname;
     console.log(this.router);
+    this.keyid = this.routess.snapshot.params.id;
+    console.log(this.keyid, 'route');
+    this.routess.params.subscribe( params => console.log('params', params) );
+    // this.childMessage = this.keyid;
+    console.log(this.childMessage, 'childMessage');
+// this.keyid = this.homepage.getID();
+// console.log(this.keyid, 'get');
   }
   refreshHref() {
     window.location.reload();

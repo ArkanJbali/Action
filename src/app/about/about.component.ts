@@ -39,7 +39,7 @@ export class AboutComponent implements OnInit {
     } else {
       this.state = 'hide';
     }
-    if (scrollPosition >= 2300) {
+    if (scrollPosition >= 2400) {
       this.state2 = 'hide';
     } else {
       this.state2 = 'show';
