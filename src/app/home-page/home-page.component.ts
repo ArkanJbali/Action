@@ -16,9 +16,9 @@ d: Idclass;
     console.log(this.route.snapshot.paramMap.get('id'));
      this.d = new Idclass(this.route);
    }
-// getID() {
-//   return this.keyid;
-// }
+getID() {
+  return this.keyid;
+}
   ngOnInit() {
     // this.route.queryParams.subscribe(params => {
     //   console.log(params.get['id'], 'dsadasdasd');

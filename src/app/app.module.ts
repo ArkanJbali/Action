@@ -26,6 +26,7 @@ import { RightTableComponent } from './home-page/right-table/right-table.compone
 import { MiddleTableComponent } from './home-page/middle-table/middle-table.component';
 import { BarComponent } from './charts/bar/bar.component';
 import { AboutComponent } from './about/about.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { AboutComponent } from './about/about.component';
     MiddleTableComponent,
     PieComponent,
     BarComponent,
-    AboutComponent
+    AboutComponent,
+    PagenotfoundComponent
     // NgbdModalConfig
   ],
   imports: [
@@ -70,7 +72,7 @@ import { AboutComponent } from './about/about.component';
     MatSidenavModule,
     BsDropdownModule.forRoot()
   ],
-  providers: [AddActionService, AddActionsComponent],
+  providers: [AddActionService, AddActionsComponent, HomePageComponent],
   bootstrap: [AppComponent],
   entryComponents: [AddActionsComponent, AlertsComponent]
 })

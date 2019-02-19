@@ -1,3 +1,4 @@
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AboutComponent } from './about/about.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { AddActionComponent } from './add-action/add-action.component';
@@ -6,12 +7,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-{ path: '', redirectTo: 'home', pathMatch: 'full' },
+{ path: 'home/:id', redirectTo: 'home/:id', pathMatch: 'full' },
 { path: 'eventlist/:id', component: EventListComponent },
 // { path: 'addAction', component: AddActionComponent },
 { path: 'home/:id', component: HomePageComponent },
-{ path: 'home', component: HomePageComponent },
-{ path: 'about', component: AboutComponent }];
+// { path: 'home', component: HomePageComponent },
+{ path: 'about', component: AboutComponent },
+{ path: '**', component: PagenotfoundComponent }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

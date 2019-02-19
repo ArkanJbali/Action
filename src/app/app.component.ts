@@ -1,3 +1,4 @@
+import { HomePageComponent } from './home-page/home-page.component';
 import { Component, ViewChild, Inject, Input } from '@angular/core';
 import {formatDate, DOCUMENT } from '@angular/common';
 import {MatSidenav} from '@angular/material/sidenav';
@@ -14,20 +15,20 @@ export class AppComponent {
   jstoday = '';
   keyid: string;
  eventID: string;
+ idParam: string;
   @ViewChild('sidenav') sidenav: MatSidenav;
-  @Input() childMessage: string;
   constructor(@Inject(DOCUMENT) document,
-  private routess: ActivatedRoute) {
+  private routess: ActivatedRoute,
+  private home: HomePageComponent) {
     this.jstoday = formatDate(this.today, 'dd/MM/yyyy', 'en-US', '+0530');
     this.router = window.location.pathname;
-    console.log(this.router);
-    this.keyid = this.routess.snapshot.params.id;
-    console.log(this.keyid, 'route');
-    this.routess.params.subscribe( params => console.log('params', params) );
-    // this.childMessage = this.keyid;
-    console.log(this.childMessage, 'childMessage');
-// this.keyid = this.homepage.getID();
-// console.log(this.keyid, 'get');
+    console.log(this.router, 'path URL');
+    this.idParam = this.router.split('/')[2];
+    console.log(this.idParam, 'ID Param from path URL');
+    // this.keyid = this.routess.snapshot.params.id;
+    // console.log(this.keyid, 'route');
+    // this.routess.params.subscribe( params => console.log('params', params) );
+    // console.log(this.home.getID());
   }
   refreshHref() {
     window.location.reload();
