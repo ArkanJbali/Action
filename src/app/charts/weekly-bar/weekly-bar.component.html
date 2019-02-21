@@ -1,0 +1,28 @@
+<!-- <h5 class="text-center">Action by App, weekly</h5>
+<div style="width: 100%; overflow-x: auto;">  <div style="width: 1000px">
+  <div style="width: 1000px">
+    <canvas baseChart height="80px"
+    [datasets]="weeklyChartData"
+    [labels]="weeklyChartLabels"
+    [options]="weeklyChartOptions"
+    [legend]="weeklyChartLegend"
+    [chartType]="weeklyChartType"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+</div> -->
+<h5 class="text-center">Action by App, weekly</h5>
+<div style="width: 100%; overflow-x: auto;">
+  <div>  <!-- <div style="width: 1000px"> -->
+    <canvas baseChart *ngIf="ookk" height="100px"
+    [datasets]="weeklyChartData"
+    [labels]="weeklyChartLabels"
+    [options]="weeklyChartOptions"
+    [legend]="weeklyChartLegend"
+    [chartType]="weeklyChartType"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+</div>

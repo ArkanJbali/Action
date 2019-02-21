@@ -30,6 +30,10 @@ export class AppComponent {
     // this.routess.params.subscribe( params => console.log('params', params) );
     // console.log(this.home.getID());
   }
+getIdParam() {
+  return this.idParam;
+}
+  // refresh after entering to homepage for taking the id
   refreshHref() {
     window.location.reload();
   }
@@ -51,12 +55,12 @@ export class AppComponent {
     this.sidenav.close();
   }
   AdminURL() {
-    window.location.href = 'https://adminloggitor.herokuapp.com/#home';
+    window.open( 'https://admin-users.herokuapp.com/users', '_blank');
   }
   LoggitorURL() {
-    window.location.href = 'https://loggitor1.herokuapp.com/src/';
+    window.open('https://loggitor1.herokuapp.com/src/', '_blank');
   }
   ActionURL() {
-    window.location.href = 'https://loggitor-fe.herokuapp.com/home';
+    window.open( 'https://loggitor-fe.herokuapp.com/home', '_blank');
   }
 }

@@ -1,4 +1,4 @@
-import { EventsInstance, SevChart } from './../Model/HomePage.model';
+import { EventsInstance, SevChart, WeekBySeverity } from './../Model/HomePage.model';
 import { Injectable } from '@angular/core';
 import {  HttpClient} from '@angular/common/http';
 import { ActionsByApp, ActionsBySeverity} from '../Model/HomePage.model';
@@ -9,11 +9,12 @@ import {Observable} from 'rxjs';
 export class HomePageService {
   constructor(private http: HttpClient) { }
   private _posturl = 'https://loggitor-be-test.herokuapp.com/getEventInsTable/2019-02-12';
-  private _getAllEventsCounter = 'https://loggitor-be-test.herokuapp.com/countEventIns';
+  private _getAllEventsCounter = 'https://loggitor-be-test.herokuapp.com/countEventIns/2019-02-12';
   private _ByAppURL = 'https://loggitor-be-test.herokuapp.com/actionsbyapp/2019-02-12/0/0';
   private _ByAppURLnew = 'https://loggitor-be-test.herokuapp.com/actionsbyapp/2019-02-12/';
   private _BySevURL = 'https://loggitor-be-test.herokuapp.com/actionsbyseverity/2019-02-12/0/0';
   private _SevChart = 'https://loggitor-be-test.herokuapp.com/getDailyChart/2019-02-12/0/0';
+  private _WeekSevURL = 'https://loggitor-be-test.herokuapp.com/WeeklyDiagram';
   getEventInsCounter(): Observable<ActionsByApp[]> {
     return this.http.get<ActionsByApp[]>(this._getAllEventsCounter);
   }
@@ -34,5 +35,8 @@ export class HomePageService {
   }
   getSevChart(): Observable<SevChart[]> {
     return this.http.get<SevChart[]>(this._SevChart);
+  }
+  getWeeklySev(): Observable<WeekBySeverity[]> {
+    return this.http.get<WeekBySeverity[]>(this._WeekSevURL);
   }
 }

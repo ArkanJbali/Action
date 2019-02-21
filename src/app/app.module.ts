@@ -27,6 +27,7 @@ import { MiddleTableComponent } from './home-page/middle-table/middle-table.comp
 import { BarComponent } from './charts/bar/bar.component';
 import { AboutComponent } from './about/about.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { WeeklyBarComponent } from './charts/weekly-bar/weekly-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     PieComponent,
     BarComponent,
     AboutComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    WeeklyBarComponent
     // NgbdModalConfig
   ],
   imports: [

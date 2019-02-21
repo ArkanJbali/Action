@@ -29,3 +29,9 @@ export interface SevChart {
   war: number;
   err: number;
 }
+export interface WeekBySeverity {
+  Week: string ;
+  Warning: string;
+  Error: string;
+  Critical: string;
+}

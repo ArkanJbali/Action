@@ -7,8 +7,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-{ path: 'home/:id', redirectTo: 'home/:id', pathMatch: 'full' },
+{ path: '', redirectTo: 'home', pathMatch: 'full' },
+{ path: 'home', component: HomePageComponent },
 { path: 'eventlist/:id', component: EventListComponent },
+{ path: 'eventlist', component: EventListComponent },
 // { path: 'addAction', component: AddActionComponent },
 { path: 'home/:id', component: HomePageComponent },
 // { path: 'home', component: HomePageComponent },
