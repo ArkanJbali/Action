@@ -55,12 +55,12 @@ getIdParam() {
     this.sidenav.close();
   }
   AdminURL() {
-    window.open( 'https://admin-users.herokuapp.com/users', '_blank');
+    window.open( 'https://admin-users.herokuapp.com/users');
   }
   LoggitorURL() {
-    window.open('https://loggitor1.herokuapp.com/src/', '_blank');
+    window.open('https://loggitor1.herokuapp.com/src/');
   }
   ActionURL() {
-    window.open( 'https://loggitor-fe.herokuapp.com/home', '_blank');
+    window.open( 'https://loggitor-fe.herokuapp.com/home');
   }
 }
