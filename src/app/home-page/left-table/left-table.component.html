@@ -4,16 +4,16 @@
       <strong style="font-size: 20px;">Actions by Severity</strong>
   </div>
   <mat-table #table [dataSource]="bySevData" matSort class='table text-white bg-dark'>
-    <ng-container matColumnDef="Severity">
+    <ng-container matColumnDef="severity">
       <mat-header-cell *matHeaderCellDef>Severity</mat-header-cell>
       <mat-cell *matCellDef="let e">{{e.severity}}</mat-cell>
     </ng-container>
-   <ng-container matColumnDef="SevNum">
-        <mat-header-cell *matHeaderCellDef   mat-sort-header>Severity Num</mat-header-cell>
+   <ng-container matColumnDef="sevCount">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header>Severity Num</mat-header-cell>
         <mat-cell *matCellDef="let e">{{e.sevCount}}</mat-cell>
       </ng-container>
-     <ng-container matColumnDef="Def">
-        <mat-header-cell *matHeaderCellDef   mat-sort-header>Def</mat-header-cell>
+     <ng-container matColumnDef="sevPercentage">
+        <mat-header-cell *matHeaderCellDef>Def</mat-header-cell>
         <mat-cell *matCellDef="let e">{{e.sevPercentage}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="loading">

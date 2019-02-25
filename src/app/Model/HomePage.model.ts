@@ -20,7 +20,7 @@ percentage: string ;
 }
 export interface ActionsBySeverity {
   Severity: string ;
-  SevNum: string ;
+  SevNum: number ;
   Def: string ;
 }
 export interface SevChart {

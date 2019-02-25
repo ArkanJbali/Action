@@ -8,8 +8,8 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 })
 export class LeftTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns3 = ['Severity', 'SevNum', 'Def'];
+ // @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns3 = ['severity', 'sevCount', 'sevPercentage'];
   bySevData;
   _Critical: String = 'critical';
   _Warning: String = 'Warning';
@@ -17,13 +17,13 @@ export class LeftTableComponent implements OnInit {
   constructor(private homeService: HomePageService) { }
 
   ngOnInit() {
-    this.homeService.getSev().subscribe(results3 => {
-      if (!results3) {
+    this.homeService.getSev().subscribe(results => {
+      if (!results) {
         return;
       }
-      this.bySevData = new MatTableDataSource(results3);
+      this.bySevData = new MatTableDataSource(results);
       this.bySevData.sort = this.sort;
-      this.bySevData.paginator = this.paginator;
+      // this.bySevData.paginator = this.paginator;
     });
   }
 

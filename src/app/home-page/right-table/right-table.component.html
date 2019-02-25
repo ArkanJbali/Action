@@ -3,15 +3,15 @@
       <strong style="font-size: 20px;">Actions by App</strong>
   </div>
   <mat-table #table [dataSource]="byAppData" matSort class='table text-white bg-dark'>
-    <ng-container matColumnDef="AppName">
+    <ng-container matColumnDef="appName">
       <mat-header-cell *matHeaderCellDef>App Name</mat-header-cell>
       <mat-cell *matCellDef="let e">{{e.appName}}</mat-cell>
     </ng-container>
-   <ng-container matColumnDef="ActionNum">
-        <mat-header-cell *matHeaderCellDef   mat-sort-header>Action Num</mat-header-cell>
+   <ng-container matColumnDef="appCount">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header>Action Num</mat-header-cell>
         <mat-cell *matCellDef="let e">{{e.appCount}}</mat-cell>
       </ng-container>
-     <ng-container matColumnDef="Def">
+     <ng-container matColumnDef="percentage">
         <mat-header-cell *matHeaderCellDef>Def</mat-header-cell>
         <mat-cell *matCellDef="let e">{{e.percentage}}</mat-cell>
       </ng-container>

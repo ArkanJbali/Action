@@ -13,20 +13,20 @@ export class RightTableComponent implements OnInit {
    private _page = 1;
   private selectedNum = 5;
   byAppData;
-  displayedColumns2 = ['AppName', 'ActionNum', 'Def'];
+  displayedColumns2 = ['appName', 'appCount', 'percentage'];
   _Critical: String = 'critical';
   _Warning: String = 'Warning';
   _Error: String = 'Error';
   constructor(private homeService: HomePageService) { }
 
   ngOnInit() {
-    this.homeService.getAppL(this.selectedNum , this._page).subscribe(results2 => {
-      if (!results2) {
+    this.homeService.getAppL(this.selectedNum , this._page).subscribe(results => {
+      if (!results) {
         return;
       }
-      this.byAppData = new MatTableDataSource(results2);
+      this.byAppData = new MatTableDataSource(results);
       this.byAppData.sort = this.sort;
-      this.byAppData.paginator = this.paginator;
+     // this.byAppData.paginator = this.paginator;
     });
   }
 
@@ -76,12 +76,12 @@ export class RightTableComponent implements OnInit {
 
   selectChangeHandler (event: any) {
     this.selectedNum = event.target.value;
-    this.homeService.getAppL( this.selectedNum , 1).subscribe(results2 => {
-      if (results2.length === 0) {
+    this.homeService.getAppL( this.selectedNum , 1).subscribe(results => {
+      if (results.length === 0) {
         return;
       } else {
      // this.events = data;
-     this.byAppData = new MatTableDataSource(results2);
+     this.byAppData = new MatTableDataSource(results);
         this.byAppData.sort = this.sort;
         this.byAppData.paginator = this.paginator;
       }
