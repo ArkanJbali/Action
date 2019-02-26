@@ -33,6 +33,7 @@ export class AppComponent {
 getIdParam() {
   return this.idParam;
 }
+
   // refresh after entering to homepage for taking the id
   refreshHref() {
     window.location.reload();

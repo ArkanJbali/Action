@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { formatDate } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 const httpOptions: { headers: HttpHeaders } = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -11,7 +13,8 @@ const httpOptions: { headers: HttpHeaders } = {
 })
 export class EventsService {
   [x: string]: any;
-
+  today = new Date();
+  jstoday = '';
   private _posturl = 'https://loggitor-be.herokuapp.com/viewEvents';
   private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents';
   private _page = 1;
@@ -22,8 +25,10 @@ export class EventsService {
   private checkkkk = 'https://loggitor-be.herokuapp.com//viewEvents/1/100';
   private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
   private _getAllEventsCounter = 'https://loggitor-be.herokuapp.com/countDefinedEvent';
+  // private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/'  + new Idclass(this.route).getDate() + '/0/0';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
+    this.jstoday = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
    }
    getEventsCounter(): Observable<NewAction[]> {
     return this.http.get<NewAction[]>(this._getAllEventsCounter);

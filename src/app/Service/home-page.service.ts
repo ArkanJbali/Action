@@ -1,20 +1,31 @@
+import { ActivatedRoute } from '@angular/router';
+import { Idclass } from './../Model/IDClass.model';
 import { EventsInstance, SevChart, WeekBySeverity } from './../Model/HomePage.model';
 import { Injectable } from '@angular/core';
 import {  HttpClient} from '@angular/common/http';
 import { ActionsByApp, ActionsBySeverity} from '../Model/HomePage.model';
 import {Observable} from 'rxjs';
+import { formatDate } from '@angular/common';
+
 @Injectable({
   providedIn: 'root'
 })
 export class HomePageService {
-  constructor(private http: HttpClient) { }
-  private _posturl = 'https://loggitor-be.herokuapp.com/getEventInsTable/2019-02-12';
-  private _getAllEventsCounter = 'https://loggitor-be.herokuapp.com/countEventIns/2019-02-12';
-  private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/2019-02-12/0/0';
-  private _ByAppURLnew = 'https://loggitor-be.herokuapp.com/actionsbyapp/2019-02-12/';
-  private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity/2019-02-12/0/0';
-  private _SevChart = 'https://loggitor-be.herokuapp.com/getDailyChart/2019-02-12/0/0';
+  today = new Date();
+  jstoday = '';
+
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
+    this.jstoday = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
+  }
+  private _posturl = 'https://loggitor-be.herokuapp.com/getEventInsTable/' + new Idclass(this.route).getDate();
+  private _getAllEventsCounter = 'https://loggitor-be.herokuapp.com/countEventIns/' +   new Idclass(this.route).getDate();
+  private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/'  + new Idclass(this.route).getDate() + '/0/0';
+  private _ByAppURLnew = 'https://loggitor-be.herokuapp.com/actionsbyapp/' + new Idclass(this.route).getDate() + '/0';
+  private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity/'  + new Idclass(this.route).getDate() + '/0/0';
+  private _SevChart = 'https://loggitor-be.herokuapp.com/getDailyChart/'  + new Idclass(this.route).getDate() + '/0/0';
   private _WeekSevURL = 'https://loggitor-be.herokuapp.com/WeeklyDiagram';
+
+
   getEventInsCounter(): Observable<ActionsByApp[]> {
     return this.http.get<ActionsByApp[]>(this._getAllEventsCounter);
   }
