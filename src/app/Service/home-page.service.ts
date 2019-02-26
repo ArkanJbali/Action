@@ -8,13 +8,13 @@ import {Observable} from 'rxjs';
 })
 export class HomePageService {
   constructor(private http: HttpClient) { }
-  private _posturl = 'https://loggitor-be-test.herokuapp.com/getEventInsTable/2019-02-12';
-  private _getAllEventsCounter = 'https://loggitor-be-test.herokuapp.com/countEventIns/2019-02-12';
-  private _ByAppURL = 'https://loggitor-be-test.herokuapp.com/actionsbyapp/2019-02-12/0/0';
-  private _ByAppURLnew = 'https://loggitor-be-test.herokuapp.com/actionsbyapp/2019-02-12/';
-  private _BySevURL = 'https://loggitor-be-test.herokuapp.com/actionsbyseverity/2019-02-12/0/0';
-  private _SevChart = 'https://loggitor-be-test.herokuapp.com/getDailyChart/2019-02-12/0/0';
-  private _WeekSevURL = 'https://loggitor-be-test.herokuapp.com/WeeklyDiagram';
+  private _posturl = 'https://loggitor-be.herokuapp.com/getEventInsTable/2019-02-12';
+  private _getAllEventsCounter = 'https://loggitor-be.herokuapp.com/countEventIns/2019-02-12';
+  private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/2019-02-12/0/0';
+  private _ByAppURLnew = 'https://loggitor-be.herokuapp.com/actionsbyapp/2019-02-12/';
+  private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity/2019-02-12/0/0';
+  private _SevChart = 'https://loggitor-be.herokuapp.com/getDailyChart/2019-02-12/0/0';
+  private _WeekSevURL = 'https://loggitor-be.herokuapp.com/WeeklyDiagram';
   getEventInsCounter(): Observable<ActionsByApp[]> {
     return this.http.get<ActionsByApp[]>(this._getAllEventsCounter);
   }

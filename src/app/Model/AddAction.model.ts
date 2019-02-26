@@ -18,5 +18,6 @@ export interface NewAction {
   actionName: string;
   description: string;
   userName: string;
+  user_id: number;
   msg: string;
 }

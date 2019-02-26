@@ -12,16 +12,16 @@ const httpOptions: { headers: HttpHeaders } = {
 export class EventsService {
   [x: string]: any;
 
-  private _posturl = 'https://loggitor-be-test.herokuapp.com/viewEvents';
-  private _posturl2 = 'https://loggitor-be-test.herokuapp.com/viewEvents';
+  private _posturl = 'https://loggitor-be.herokuapp.com/viewEvents';
+  private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents';
   private _page = 1;
   private _items = 10;
   private _posturlnew  = this._posturl2 + '/' + this._page + '/' +  this._items ;
-  private _posturl22 = 'https://loggitor-be-test.herokuapp.com/viewEvents/1/100';
-  private _DeleteURL = 'https://loggitor-be-test.herokuapp.com/deleteEvent';
-  private checkkkk = 'https://loggitor-be-test.herokuapp.com//viewEvents/1/100';
-  private _UpdateURL = 'https://loggitor-be-test.herokuapp.com/updateEvent';
-  private _getAllEventsCounter = 'https://loggitor-be-test.herokuapp.com/countDefinedEvent';
+  private _posturl22 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
+  private _DeleteURL = 'https://loggitor-be.herokuapp.com/deleteEvent';
+  private checkkkk = 'https://loggitor-be.herokuapp.com//viewEvents/1/100';
+  private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
+  private _getAllEventsCounter = 'https://loggitor-be.herokuapp.com/countDefinedEvent';
 
   constructor(private http: HttpClient) {
    }
