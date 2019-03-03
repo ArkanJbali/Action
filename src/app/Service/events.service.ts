@@ -15,16 +15,16 @@ export class EventsService {
   [x: string]: any;
   today = new Date();
   jstoday = '';
-  private _posturl = 'https://loggitor-be.herokuapp.com/viewEvents';
-  private _posturl2 = 'https://loggitor-be.herokuapp.com/viewEvents';
+  private _posturl = 'https://loggitor-action-be.herokuapp.com/viewEvents';
+  private _posturl2 = 'https://loggitor-action-be.herokuapp.com/viewEvents';
   private _page = 1;
   private _items = 10;
   private _posturlnew  = this._posturl2 + '/' + this._page + '/' +  this._items ;
-  private _posturl22 = 'https://loggitor-be.herokuapp.com/viewEvents/1/100';
-  private _DeleteURL = 'https://loggitor-be.herokuapp.com/deleteEvent';
-  private checkkkk = 'https://loggitor-be.herokuapp.com//viewEvents/1/100';
-  private _UpdateURL = 'https://loggitor-be.herokuapp.com/updateEvent';
-  private _getAllEventsCounter = 'https://loggitor-be.herokuapp.com/countDefinedEvent';
+  private _posturl22 = 'https://loggitor-action-be.herokuapp.com/viewEvents/1/100';
+  private _DeleteURL = 'https://loggitor-action-be.herokuapp.com/deleteEvent';
+  private checkkkk = 'https://loggitor-action-be.herokuapp.com/viewEvents/1/100';
+  private _UpdateURL = 'https://loggitor-action-be.herokuapp.com/updateEvent';
+  private _getAllEventsCounter = 'https://loggitor-action-be.herokuapp.com/countDefinedEvent';
   // private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/'  + new Idclass(this.route).getDate() + '/0/0';
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {

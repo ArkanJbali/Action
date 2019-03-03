@@ -17,13 +17,13 @@ export class HomePageService {
   constructor(private http: HttpClient, private route: ActivatedRoute) {
     this.jstoday = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
   }
-  private _posturl = 'https://loggitor-be.herokuapp.com/getEventInsTable/' + new Idclass(this.route).getDate();
-  private _getAllEventsCounter = 'https://loggitor-be.herokuapp.com/countEventIns/' +   new Idclass(this.route).getDate();
-  private _ByAppURL = 'https://loggitor-be.herokuapp.com/actionsbyapp/'  + new Idclass(this.route).getDate() + '/0/0';
-  private _ByAppURLnew = 'https://loggitor-be.herokuapp.com/actionsbyapp/' + new Idclass(this.route).getDate() + '/0';
-  private _BySevURL = 'https://loggitor-be.herokuapp.com/actionsbyseverity/'  + new Idclass(this.route).getDate() + '/0/0';
-  private _SevChart = 'https://loggitor-be.herokuapp.com/getDailyChart/'  + new Idclass(this.route).getDate() + '/0/0';
-  private _WeekSevURL = 'https://loggitor-be.herokuapp.com/WeeklyDiagram';
+  private _posturl = 'https://loggitor-action-be.herokuapp.com/getEventInsTable/' + new Idclass(this.route).getDate();
+  private _getAllEventsCounter = 'https://loggitor-action-be.herokuapp.com/countEventIns/' +   new Idclass(this.route).getDate();
+  private _ByAppURL = 'https://loggitor-action-be.herokuapp.com/actionsbyapp/'  + new Idclass(this.route).getDate() + '/0/0';
+  private _ByAppURLnew = 'https://loggitor-action-be.herokuapp.com/actionsbyapp/' + new Idclass(this.route).getDate() + '/0';
+  private _BySevURL = 'https://loggitor-action-be.herokuapp.com/actionsbyseverity/'  + new Idclass(this.route).getDate() + '/0/0';
+  private _SevChart = 'https://loggitor-action-be.herokuapp.com/getDailyChart/'  + new Idclass(this.route).getDate() + '/0/0';
+  private _WeekSevURL = 'https://loggitor-action-be.herokuapp.com/WeeklyDiagram';
 
 
   getEventInsCounter(): Observable<ActionsByApp[]> {
