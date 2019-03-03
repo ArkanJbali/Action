@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import {  HttpClient} from '@angular/common/http';
 import { ActionsByApp, ActionsBySeverity} from '../Model/HomePage.model';
 import {Observable} from 'rxjs';
-import { formatDate } from '@angular/common';
+import { formatDate, DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +13,16 @@ import { formatDate } from '@angular/common';
 export class HomePageService {
   today = new Date();
   jstoday = '';
-
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, public datepipe: DatePipe) {
     this.jstoday = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
   }
-  private _posturl = 'https://loggitor-action-be.herokuapp.com/getEventInsTable/' + new Idclass(this.route).getDate();
-  private _getAllEventsCounter = 'https://loggitor-action-be.herokuapp.com/countEventIns/' +   new Idclass(this.route).getDate();
-  private _ByAppURL = 'https://loggitor-action-be.herokuapp.com/actionsbyapp/'  + new Idclass(this.route).getDate() + '/0/0';
-  private _ByAppURLnew = 'https://loggitor-action-be.herokuapp.com/actionsbyapp/' + new Idclass(this.route).getDate() + '/0';
-  private _BySevURL = 'https://loggitor-action-be.herokuapp.com/actionsbyseverity/'  + new Idclass(this.route).getDate() + '/0/0';
-  private _SevChart = 'https://loggitor-action-be.herokuapp.com/getDailyChart/'  + new Idclass(this.route).getDate() + '/0/0';
+  private _posturl = 'https://loggitor-action-be.herokuapp.com/getEventInsTable/' + new Idclass(this.route, this.datepipe).getDate();
+// tslint:disable: max-line-length
+  private _getAllEventsCounter = 'https://loggitor-action-be.herokuapp.com/countEventIns/' +   new Idclass(this.route, this.datepipe).getDate();
+  private _ByAppURL = 'https://loggitor-action-be.herokuapp.com/actionsbyapp/'  + new Idclass(this.route, this.datepipe).getDate() + '/0/0';
+  private _ByAppURLnew = 'https://loggitor-action-be.herokuapp.com/actionsbyapp/' + new Idclass(this.route, this.datepipe).getDate() + '/0';
+  private _BySevURL = 'https://loggitor-action-be.herokuapp.com/actionsbyseverity/'  + new Idclass(this.route, this.datepipe).getDate() + '/0/0';
+  private _SevChart = 'https://loggitor-action-be.herokuapp.com/getDailyChart/'  + new Idclass(this.route, this.datepipe).getDate() + '/0/0';
   private _WeekSevURL = 'https://loggitor-action-be.herokuapp.com/WeeklyDiagram';
 
 

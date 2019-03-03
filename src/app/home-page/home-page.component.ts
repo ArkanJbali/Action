@@ -1,6 +1,7 @@
 import { Idclass } from './../Model/IDClass.model';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit} from '@angular/core';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -9,12 +10,12 @@ import { Component, OnInit} from '@angular/core';
 export class HomePageComponent implements OnInit {
 keyid: string;
 d: Idclass;
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, public datepipe: DatePipe) {
       this.keyid = this.route.snapshot.params.id;
     console.log(this.keyid, 'route');
     this.route.params.subscribe( params => console.log('params', params));
     console.log(this.route.snapshot.paramMap.get('id'));
-     this.d = new Idclass(this.route);
+     this.d = new Idclass(this.route, this.datepipe);
    }
 getID() {
   return this.keyid;

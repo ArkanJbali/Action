@@ -1,3 +1,4 @@
+import { Idclass } from './Model/IDClass.model';
 import { ChartsModule } from 'ng2-charts';
 import { PieComponent } from './charts/pie/pie.component';
 import { AddActionService } from './Service/add-action.service';
@@ -28,6 +29,7 @@ import { BarComponent } from './charts/bar/bar.component';
 import { AboutComponent } from './about/about.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { WeeklyBarComponent } from './charts/weekly-bar/weekly-bar.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +76,7 @@ import { WeeklyBarComponent } from './charts/weekly-bar/weekly-bar.component';
     MatSidenavModule,
     BsDropdownModule.forRoot()
   ],
-  providers: [AddActionService, AddActionsComponent, HomePageComponent],
+  providers: [AddActionService, AddActionsComponent, HomePageComponent, DatePipe, EventListComponent],
   bootstrap: [AppComponent],
   entryComponents: [AddActionsComponent, AlertsComponent]
 })

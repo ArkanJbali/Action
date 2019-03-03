@@ -1,6 +1,6 @@
 import { HomePageComponent } from './home-page/home-page.component';
 import { Component, ViewChild, Inject, Input } from '@angular/core';
-import {formatDate, DOCUMENT } from '@angular/common';
+import { formatDate, DOCUMENT, DatePipe } from '@angular/common';
 import {MatSidenav} from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -13,14 +13,18 @@ export class AppComponent {
   today = new Date();
   router = '';
   jstoday = '';
+  latest_date = '';
   keyid: string;
  eventID: string;
  idParam: string;
   @ViewChild('sidenav') sidenav: MatSidenav;
   constructor(@Inject(DOCUMENT) document,
   private routess: ActivatedRoute,
-  private home: HomePageComponent) {
+  private home: HomePageComponent,
+  public datepipe: DatePipe) {
+    this.latest_date = this.datepipe.transform(this.today, 'dd/MM/yyyy');
     this.jstoday = formatDate(this.today, 'dd/MM/yyyy', 'en-US', '+0530');
+    console.log(this.latest_date);
     this.router = window.location.pathname;
     console.log(this.router, 'path URL');
     this.idParam = this.router.split('/')[2];

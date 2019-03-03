@@ -9,7 +9,7 @@ import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
 import { AddActionsComponent } from './add-actions/add-actions.component';
 import { NewAction, EventsInstance } from '../Model/EventsList.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { first } from 'rxjs/operators';
 import { NotificationsService } from '../Service/notifications.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
@@ -50,12 +50,13 @@ d: Idclass;
     private location: Location,
     private dialogService: AlertService,
     private NotifServ: NotificationsService,
-    private routess: ActivatedRoute
+    private routess: ActivatedRoute,
+    public datepipe: DatePipe
     ) {
       this.keyid = this.routess.snapshot.params.id;
       console.log(this.keyid, 'route');
       this.routess.params.subscribe( params => console.log('params', params) );
-      this.d = new Idclass(this.routess);
+      this.d = new Idclass(this.routess, this.datepipe);
     }
   ngOnInit() {
    // this.eventService.getPosts().subscribe(data => this.events = data);

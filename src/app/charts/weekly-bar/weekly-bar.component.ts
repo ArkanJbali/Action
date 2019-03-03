@@ -65,15 +65,15 @@ export class WeeklyBarComponent implements OnInit {
         this.weeklyChartData[2].data[i] = 0;
       }
     }
-    console.log('this.weeklyChartLabels: ' + JSON.stringify(this.weeklyChartLabels));
-    console.log('this.weeklyChartData: ' + JSON.stringify(this.weeklyChartData));
+    // console.log('this.weeklyChartLabels: ' + JSON.stringify(this.weeklyChartLabels));
+    // console.log('this.weeklyChartData: ' + JSON.stringify(this.weeklyChartData));
 
     for ( let i = 0; i < this.bySevWkData.length; i++) {
       let total = 0; let per0 = 0; let per1 = 0; let per2 = 0;
       total += Number(this.weeklyChartData[0].data[i]);
       total += Number(this.weeklyChartData[1].data[i]);
       total += Number(this.weeklyChartData[2].data[i]);
-      console.log(total, 'total');
+      // console.log(total, 'total');
       per0 = (100 * Number(this.weeklyChartData[0].data[i]) / total),
       this.weeklyChartData[0].per[i] = per0.toFixed(2);
       per1 = (100 * Number(this.weeklyChartData[1].data[i]) / total),
@@ -81,8 +81,8 @@ export class WeeklyBarComponent implements OnInit {
       per2 = (100 * Number(this.weeklyChartData[2].data[i]) / total),
       this.weeklyChartData[2].per[i] = per2.toFixed(2);
     }
-    console.log('percentage is: ' + this.weeklyChartData[0].per[1]);
-    console.log('this.weeklyChartData: ' + JSON.stringify(this.weeklyChartData));
+    // console.log('percentage is: ' + this.weeklyChartData[0].per[1]);
+    // console.log('this.weeklyChartData: ' + JSON.stringify(this.weeklyChartData));
     // this.tests2 = this.tests.split('.') ;
     this.ookk = true;
     });
