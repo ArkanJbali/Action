@@ -35,7 +35,7 @@ private _actions = 'https://loggitor-action-be.herokuapp.com/actionsName';
 private serviceUrl = './assets/users.json';
 private _posturl2 = 'https://loggitor-action-be.herokuapp.com/addEvent';
 private _UpdateURL = 'https://loggitor-action-be.herokuapp.com/updateEvent';
-private _EmailsURL = 'https://loggitor-action-be.herokuapp.com/emails';
+private _EmailsURL = 'https://adminfinal5.herokuapp.com/emails';
 getApp(): Observable<Apps[]> {
    return this.http.get<Apps[]>(this._posturl);
  }
